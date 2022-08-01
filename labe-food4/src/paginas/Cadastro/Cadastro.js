@@ -3,7 +3,7 @@ import { useForm } from "../../hooks/useForm";
 import {BASE_URL} from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { goToFeed } from "../../routes/Coordenator";
+import { goToCadastroEndereco } from "../../routes/Coordenator";
 
 
 const Cadastro = () =>{
@@ -18,7 +18,7 @@ const Cadastro = () =>{
         .then((resp) =>{
             localStorage.setItem("token", resp.data.token)
             alert("Usuario Cadastrado com Sucesso")
-            goToFeed(navigate)
+            goToCadastroEndereco(navigate)
         })
         .catch((err) =>{
             alert("Dados invalidos")
@@ -51,16 +51,17 @@ const Cadastro = () =>{
                 title="email"
                 required
                 />
+
                 <input
                  placeholder="Digite o seu CPF"
                  name="cpf"
-                 type="number"
                  value={form.cpf}
                  onChange={onChange}
-                 pattern={"(\d{3})(\d{3})(\d{3})(\d{2})"}
+                 pattern={"[0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[\-]?[0-9]{2}"}
                  title="CPF invalido"
                  required
                 />
+
                 <input
                 placeholder="Digite sua Senha"
                 name="password"
