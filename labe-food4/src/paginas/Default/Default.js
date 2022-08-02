@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import { Container, ContainerLogo } from "./Style";
+import logo from "../../assets/logo-future-eats.png"
 
 const Default = () =>{
-    
 
     return (
-       <div>Default</div>
+       <Container>
+            <ContainerLogo src={logo} alt="logo" />
+       </Container>
     )
 }
 
