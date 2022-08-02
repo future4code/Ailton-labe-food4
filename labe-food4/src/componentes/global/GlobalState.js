@@ -9,6 +9,7 @@ import { BASE_URL } from "../../constantes/BASE_URL"
 const GlobalState = (props) => {
     
     const [restaurantes, setRestaurantes] = useState([])
+    const [perfil, setPerfil] = useState()
 
     const PegarRestaurantes = () => {
         const url = `${BASE_URL}/restaurants`
@@ -20,9 +21,26 @@ const GlobalState = (props) => {
         }
         axios.get(url, header)
         .then((resp) =>{
-           console.log(resp)
            setRestaurantes(resp.data.restaurants)
             
+        })
+        .catch((err) =>{
+            console.log("Deu ruim", err.response)
+        })
+    }
+
+    const PegarPerfil = () =>{
+        const url = `${BASE_URL}/profile`
+        const token = localStorage.getItem("token")
+        const header = {
+            headers: {
+                auth: token
+            },
+        }
+        axios.get(url, header)
+        .then((resp) =>{
+           console.log(resp.data.user)
+           setPerfil(resp.data.user)   
         })
         .catch((err) =>{
             console.log("Deu ruim", err.response)
@@ -35,9 +53,9 @@ const GlobalState = (props) => {
         PegarRestaurantes()
     }, [])
     
-    const states = { restaurantes }
-    const setters = { setRestaurantes }
-    const requests = {PegarRestaurantes}
+    const states = { restaurantes, perfil }
+    const setters = { setRestaurantes, setPerfil }
+    const requests = {PegarRestaurantes, PegarPerfil}
 
     const Provider = GlobalContext.Provider
 

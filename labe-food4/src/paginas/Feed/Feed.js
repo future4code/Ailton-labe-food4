@@ -2,9 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import {FeedCard} from "../../componentes/Cards/FeedCard"
-
+import { Cards } from "./Style";
+import { Pesquisa } from "./Style";
+import { ContainerPesquisa } from "./Style";
+import { Container } from "./Style";
+import { Cabecalho } from "./Style";
+import { goToPerfil } from "../../routes/Coordenator";
+import { useNavigate } from "react-router-dom";
+import { Categorias } from "./Style";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Feed = () =>{
+    const navigate = useNavigate()
     const  {states} = useContext(GlobalContext)
     const {restaurantes} = states
     const [query, setQuery] = useState("")
@@ -23,25 +33,46 @@ const Feed = () =>{
       setQuery(evento.target.value)
     }
 
-    return (
-       <div>
-       <div>Header</div> 
+    // Map do Carousel 
+    const categorias = restaurantes?.map((restauranteCategoria) => {
+      return restauranteCategoria.category;
+  });
+  const categoriasFiltrados = categorias?.filter((item, index) => {
+      return categorias.indexOf(item) === index;
+  });
 
-       <input
+    return (
+       <Container>
+       <Cabecalho>Rappi4</Cabecalho> 
+
+       <ContainerPesquisa>
+
+       <Pesquisa
        placeholder="Restaurante"
        value={query}
        onChange={updateQuery} 
        />
 
-       <div>Filtro de Comida</div>
-       <div>{restaurantes.length > 0 ? mapRestaurantes : <p>Carregando...</p>}</div>
+      </ContainerPesquisa>
+
+      <Carousel showThumbs={false}>
+            {categoriasFiltrados?.map((categoria) => (
+                <Categorias key={categoria}
+                            
+                >
+                  {categoria}
+                </Categorias>
+          ))}
+        </Carousel>
+
+       <Cards>{restaurantes.length > 0 ? mapRestaurantes : <p>Carregando...</p>}</Cards>
        <div>
             <div>Home</div>
             <div>Carrinho</div>
-            <div>Perfil</div>
+            <div onClick={() => goToPerfil(navigate)}>Perfil</div>
        </div>
        
-        </div>
+        </Container>
     )
 }
 
