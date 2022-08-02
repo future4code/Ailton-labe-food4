@@ -14,10 +14,16 @@ const CadastroEndereco = () =>{
         event.preventDefault()
         console.log("deu boa")
         const url = `${BASE_URL}/address`
-        axios.put(url, form)
+        const token = localStorage.getItem("token")
+        const header = {
+            headers: {
+                auth: token
+            },
+        }
+        axios.put(url, form, header)
         .then((resp) =>{
             localStorage.setItem("token", resp.data.token)
-            alert("Usuario Cadastrado com Sucesso")
+            alert("Endereço Cadastrado com Sucesso")
             goToFeed(navigate)
         })
         .catch((err) =>{
@@ -41,11 +47,13 @@ const CadastroEndereco = () =>{
                  name="street"
                  required
                 />
+
                 <input
                 placeholder="Numero"
                 value={form.number}
                 onChange={onChange}
                 name="number"
+                type="number"
                 required
                 />
 
@@ -62,19 +70,25 @@ const CadastroEndereco = () =>{
                 onChange={onChange}
                 required
                 name="neighbourhood"
+                
                 />
+
                 <input
                 placeholder="Cidade"
                 value={form.city}
                 onChange={onChange}
                 name="city"
+                required
                 />
+
                  <input
                 placeholder="Estado"
                 value={form.state}
                 onChange={onChange}
                 name="state"
+                required
                 />
+
             </div>
             <button>Criar</button>
             </form>
