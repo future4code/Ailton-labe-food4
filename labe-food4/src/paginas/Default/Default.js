@@ -2,12 +2,15 @@ import React from "react";
 import { Container, ContainerLogo } from "./Style";
 import logo from "../../assets/logo-future-eats.png"
 
-const Default = () =>{
+
+const Default = () => {
 
     return (
-       <Container>
-            <ContainerLogo src={logo} alt="logo" />
-       </Container>
+        
+            <Container>
+                <ContainerLogo src={logo} alt="logo" />
+            </Container>
+        
     )
 }
 

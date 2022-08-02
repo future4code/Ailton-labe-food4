@@ -7,19 +7,34 @@ import {FeedCard} from "../../componentes/Cards/FeedCard"
 const Feed = () =>{
     const  {states} = useContext(GlobalContext)
     const {restaurantes} = states
+    const [query, setQuery] = useState("")
   
-    const mapRestaurantes = restaurantes.map((restaurante) =>{
-      return (
-        <FeedCard key={restaurante.id} restaurante={restaurante}/>
-      )
+    const mapRestaurantes = restaurantes
+    . filter(restaurante =>{
+      return restaurante.name.toLowerCase().includes(query.toLowerCase())
     })
+        .map((restaurante) =>{
+          return (
+            <FeedCard key={restaurante.id} restaurante={restaurante}/>
+            )
+          })
+          console.log(mapRestaurantes)
+   
+
+    const updateQuery = (evento) => {
+      setQuery(evento.target.value)
+    }
 
     return (
        <div>
        <div>Header</div> 
+
        <input
        placeholder="Restaurante"
+       value={query}
+       onChange={updateQuery} 
        />
+
        <div>Filtro de Comida</div>
        <div>{mapRestaurantes}</div>
        <div>
