@@ -3,8 +3,9 @@ import { useForm } from "../../hooks/useForm";
 import {BASE_URL} from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { LogoRappi, Titulo, InputEstilo, Container, BotaoEstilo, TextoBotao, AreaBotao } from "./Style";
+import logo from "../../assets/logo-future-eats-invert.png"
 import { goToCadastroEndereco } from "../../routes/Coordenator";
-
 
 const Cadastro = () =>{
     const navigate = useNavigate()
@@ -29,13 +30,13 @@ const Cadastro = () =>{
     }
 
     return (
-       <div>
+       <Container>
         <div>Header</div>
-            <div>imagem</div>
-            <h2>Cadastrar</h2>
+            <LogoRappi src={logo} alt={"logo"} />
+            <Titulo>Cadastrar</Titulo>
             <form onSubmit={Cadastrar}>
             <div>
-                <input
+                <InputEstilo
                  placeholder="Digite o seu Nome"
                  name="name"
                  value={form.name}
@@ -43,7 +44,7 @@ const Cadastro = () =>{
                  title="Name"
                  required
                 />
-                <input
+                <InputEstilo
                 placeholder="Digite o seu Email"
                 name="email"
                 value={form.email}
@@ -52,7 +53,7 @@ const Cadastro = () =>{
                 required
                 />
 
-                <input
+                <InputEstilo
                  placeholder="Digite o seu CPF"
                  name="cpf"
                  value={form.cpf}
@@ -62,7 +63,7 @@ const Cadastro = () =>{
                  required
                 />
 
-                <input
+                <InputEstilo
                 placeholder="Digite sua Senha"
                 name="password"
                 value={form.password}
@@ -71,13 +72,15 @@ const Cadastro = () =>{
                 title="Minimo 8, máximo 30"
                 required
                 />
-                <input
+                <InputEstilo
                 placeholder="Confirmar Senha"
                 />
             </div>
-            <button>Criar</button>
+            <AreaBotao>
+            <BotaoEstilo><TextoBotao>Criar</TextoBotao></BotaoEstilo>
+            </AreaBotao>
             </form>
-       </div>
+       </Container>
     )
 }
 
