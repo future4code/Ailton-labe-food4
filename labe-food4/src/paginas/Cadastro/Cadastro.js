@@ -24,9 +24,24 @@ const Cadastro = () =>{
             alert("Dados invalidos")
             console.log("Erro ao Cadastrar", err.response)
         })
-
-
     }
+
+  
+
+    let senha = document.getElementById('senha');
+    let senhaC = document.getElementById('senhaC');
+
+    const validarSenha = () => {
+    if (senha.value != senhaC.value) {
+    senhaC.setCustomValidity("Senhas diferentes!");
+    senhaC.reportValidity();
+    return false;
+  } else {
+    senhaC.setCustomValidity("");
+    return true;
+  }
+}
+
 
     return (
        <div>
@@ -69,13 +84,22 @@ const Cadastro = () =>{
                 onChange={onChange}
                 pattern={"^.{8,30}$"}
                 title="Minimo 8, máximo 30"
+                type="password"
+                id="senha" 
                 required
                 />
                 <input
                 placeholder="Confirmar Senha"
+                name="passwordC"
+                onChange={onChange}
+                pattern={"^.{8,30}$"}
+                title="Minimo 8, máximo 30"
+                type="password"
+                id="senhaC" 
+                required
                 />
             </div>
-            <button>Criar</button>
+            <button onClick={validarSenha}>Criar</button>
             </form>
        </div>
     )
