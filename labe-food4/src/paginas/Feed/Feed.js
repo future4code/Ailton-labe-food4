@@ -9,18 +9,16 @@ const Feed = () =>{
     const {restaurantes} = states
     const [query, setQuery] = useState("")
   
-    const mapRestaurantes = restaurantes
-    . filter(restaurante =>{
-      return restaurante.name.toLowerCase().includes(query.toLowerCase())
+    const filterRestaurantes = restaurantes && restaurantes.filter(restaurante =>{
+      return restaurante.name.toLowerCase().includes(query.toLowerCase()) ? true : false
     })
-        .map((restaurante) =>{
-          return (
-            <FeedCard key={restaurante.id} restaurante={restaurante}/>
-            )
-          })
-          console.log(mapRestaurantes)
-   
 
+    const mapRestaurantes = filterRestaurantes.length > 0 ? filterRestaurantes.map((restaurante) =>{
+      return (
+        <FeedCard key={restaurante.id} restaurante={restaurante}/>
+      )
+    }) : <p>Não encontramos :(</p>
+   
     const updateQuery = (evento) => {
       setQuery(evento.target.value)
     }
@@ -36,7 +34,7 @@ const Feed = () =>{
        />
 
        <div>Filtro de Comida</div>
-       <div>{mapRestaurantes}</div>
+       <div>{restaurantes.length > 0 ? mapRestaurantes : <p>Carregando...</p>}</div>
        <div>
             <div>Home</div>
             <div>Carrinho</div>
