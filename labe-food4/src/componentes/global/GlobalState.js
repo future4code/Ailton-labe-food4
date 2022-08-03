@@ -57,12 +57,13 @@ const GlobalState = (props) => {
         }
         axios.get(url, header)
         .then((resp) =>{
-           console.log(resp)  
+           console.log(resp.data.orders)  
         })
         .catch((err) =>{
             console.log("Deu ruim", err.response)
         })
     }
+
     
 
     useEffect (() =>{

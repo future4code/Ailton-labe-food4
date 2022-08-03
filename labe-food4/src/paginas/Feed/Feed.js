@@ -12,10 +12,11 @@ import cart from "../../assets/shopping-cart.png"
 import avatar from "../../assets/avatar.png"
 import home from "../../assets/homepage.png"
 
+
 const Feed = () =>{
     const navigate = useNavigate()
     const  {states} = useContext(GlobalContext)
-    const {restaurantes} = states
+    const {restaurantes, restaurantesDetalhes} = states
     const [query, setQuery] = useState("")
   
     const filterRestaurantes = restaurantes && restaurantes.filter(restaurante =>{

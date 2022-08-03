@@ -30,6 +30,7 @@ height: 76px;
 margin: 16px 0;
 padding: 16px;
 background-color: #eee;
+position: relative;
 ` 
 
 export const TituloEndereco = styled.div`
@@ -76,10 +77,30 @@ margin-bottom: 0.5rem;
 margin-left: 0.5rem;
 height: 102px;
 width: 328px;
+position: relative;
 `
 
 export const PerfilLetras = styled.span `
 display:flex;
 margin-bottom: 0.5rem;
 margin-left: 0.5rem;
+`
+export const BotaoEditar = styled.img `
+position: absolute;
+left: 20rem;
+width: 27px;
+height: 27px;
+object-fit: contain;
+`
+
+export const NavBar = styled.div`
+display: flex;
+justify-content:space-around;
+align-items: center;
+height: 49px;
+`
+export const Icons = styled.img`
+width: 27px;
+height: 27px;
+object-fit: contain;
 `

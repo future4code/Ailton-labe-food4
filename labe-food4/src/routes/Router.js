@@ -5,7 +5,7 @@ import Cadastro from "../paginas/Cadastro/Cadastro"
 import Carrinho from "../paginas/Carrinho/Carrinho"
 import CadastroEndereco from "../paginas/CadastroEndereco/CadastroEndereco"
 import Default from "../paginas/Default/Default"
-import EditarEndereco from "../paginas/CadastroEndereco/CadastroEndereco"
+import EditarEndereco from "../paginas/EditarEndereco/EditarEndereco";
 import EditarPerfil from "../paginas/EditarPerfil/EditarPerfil"
 import Feed from "../paginas/Feed/Feed"
 import Login from "../paginas/Login/Login"
