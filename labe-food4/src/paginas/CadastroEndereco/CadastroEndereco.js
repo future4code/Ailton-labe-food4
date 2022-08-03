@@ -4,6 +4,7 @@ import {BASE_URL} from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { goToFeed } from "../../routes/Coordenator";
+import { BotaoGeral } from "../../constantes/ScreenContainer";
 
 
 const CadastroEndereco = () =>{
@@ -90,7 +91,7 @@ const CadastroEndereco = () =>{
                 />
 
             </div>
-            <button>Criar</button>
+            <BotaoGeral>Criar</BotaoGeral>
             </form>
        </div>
     )

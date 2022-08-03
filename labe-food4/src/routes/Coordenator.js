@@ -38,7 +38,7 @@ export const goToPerfil = (navigate) =>{
     navigate("/perfil")
 }
 
-export const goToRestaurante = (navigate) =>{
-    navigate("/restaurante")
+export const goToRestaurante = (navigate, id) =>{
+    navigate(`/restaurante/${id}`)
 }
 

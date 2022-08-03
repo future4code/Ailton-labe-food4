@@ -5,6 +5,7 @@ import { BASE_URL } from "../../constantes/BASE_URL"
 import axios from "axios";
 import { goToFeed } from "../../routes/Coordenator";
 import { goToCadastro } from "../../routes/Coordenator";
+import { BotaoGeral } from "../../constantes/ScreenContainer"
 
 const Login = () => {
     
@@ -58,7 +59,7 @@ const Login = () => {
                     required
                 />
             </div>
-            <button>Login</button>
+            <BotaoGeral>Login</BotaoGeral>
             </form>
             <div>
                 <span>Não possui Cadastro?</span>
