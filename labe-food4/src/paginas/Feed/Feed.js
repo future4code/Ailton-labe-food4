@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import {FeedCard} from "../../componentes/Cards/FeedCard"
-import { Cards } from "./Style";
-import { Pesquisa } from "./Style";
-import { ContainerPesquisa } from "./Style";
-import { Container } from "./Style";
-import { Cabecalho } from "./Style";
-import { goToPerfil } from "../../routes/Coordenator";
+import { Pesquisa, NomeApp, Icons, NavBar, Cards, ContainerPesquisa, Container, Cabecalho } from "./Style";
+import { goToCarrinho, goToFeed, goToPerfil } from "../../routes/Coordenator";
 import { useNavigate } from "react-router-dom";
 import { Categorias } from "./Style";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import cart from "../../assets/shopping-cart.png"
+import avatar from "../../assets/avatar.png"
+import home from "../../assets/homepage.png"
 
 const Feed = () =>{
     const navigate = useNavigate()
@@ -43,12 +42,13 @@ const Feed = () =>{
 
     return (
        <Container>
-       <Cabecalho>Rappi4</Cabecalho> 
+       <Cabecalho>
+        <NomeApp>Rappi4</NomeApp>
+        </Cabecalho> 
 
        <ContainerPesquisa>
-
        <Pesquisa
-       placeholder="Restaurante"
+       placeholder={"Restaurante"}
        value={query}
        onChange={updateQuery} 
        />
@@ -66,11 +66,12 @@ const Feed = () =>{
         </Carousel>
 
        <Cards>{restaurantes.length > 0 ? mapRestaurantes : <p>Carregando...</p>}</Cards>
-       <div>
-            <div>Home</div>
-            <div>Carrinho</div>
-            <div onClick={() => goToPerfil(navigate)}>Perfil</div>
-       </div>
+       <NavBar>
+          <Icons onClick={() => goToFeed(navigate)} src={home} alt="home" />
+          <Icons onClick={() => goToCarrinho(navigate)} src={cart} alt="cart" />
+          <Icons onClick={() => goToPerfil(navigate)} src={avatar} alt="avatar" />
+            
+       </NavBar>
        
         </Container>
     )

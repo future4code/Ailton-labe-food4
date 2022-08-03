@@ -12,6 +12,20 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 padding-bottom:0.5rem;
 `
 
+export const NomeApp = styled.div`
+width: 48px;
+height: 19px;
+font-family: Roboto;
+font-size: 16px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+text-align: center;
+color: #000;
+`
+
 export const Cards = styled.div `
 display:flex;
 flex-direction: column;
@@ -24,6 +38,19 @@ justify-content: center;
 margin-top: 0.5rem;
 margin-bottom: 0.5rem;
 
+`
+
+export const Icons = styled.img`
+width: 27px;
+height: 27px;
+object-fit: contain;
+`
+
+export const NavBar = styled.div`
+display: flex;
+justify-content:space-around;
+align-items: center;
+height: 49px;
 `
 
 export const Pesquisa = styled.input `

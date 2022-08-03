@@ -1,8 +1,6 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import React from "react"
 import styled from "styled-components"
 import { ImagemCard } from "../../constantes/ScreenContainer"
-import { goToRestaurante } from "../../routes/Coordenator";
 
 const Countainer = styled.div`
 display:flex;
@@ -17,7 +15,7 @@ width: 80%;
 
 `
 
-const NomeRestaurante = styled.div`
+const Nomecomida = styled.div`
 color: #e86e5a;
 margin-top: 0.5rem;
 margin-left: 1rem;
@@ -33,22 +31,20 @@ justify-content: space-between;
 
 `
 
-
-export const FeedCard = (props) => {
-    const navigate = useNavigate()
-    const restaurante = props.restaurante
+export const DetalhesCard = (props) => {
+    const comida = props.comida
 
     return (
-        <Countainer onClick={() => goToRestaurante(navigate, restaurante.id)}>
+        <Countainer>
             <div>
-                <ImagemCard src={restaurante.logoUrl} />
+                <ImagemCard src={comida.photoUrl} />
             </div>
             <div>
-                <NomeRestaurante>{restaurante.name}</NomeRestaurante>
+                <Nomecomida>{comida.name}</Nomecomida>
             </div>
             <Rodape>
-                <span>{restaurante.deliveryTime} min</span>
-                <span>Frete R${restaurante.shipping},00</span>
+                <span>{comida.description}</span>
+                <span>R${comida.price},00</span>
             </Rodape>
         </Countainer>
     )

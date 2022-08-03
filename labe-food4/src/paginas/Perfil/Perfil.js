@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
-import { Container } from "./Style";
+import { Container, Endereco, Linha, Historico } from "./Style";
 import { Cabecalho } from "./Style";
 import { DadosPessoal } from "./Style";
-import { PerfilLetras } from "./Style";
+import { PerfilLetras, TituloEndereco } from "./Style";
+import { BoxEndereco } from "./Style";
 
 const Perfil = () => {
 
@@ -27,12 +28,14 @@ const Perfil = () => {
                     <PerfilLetras>{perfil.cpf}</PerfilLetras>
                 </DadosPessoal> : <p>Carregando...</p>}
 
-            <div>
-                <span>Endereço cadastrado</span>
-                {perfil ?
-                    <div>{perfil.address}</div> : <p>Carregando...</p>}
-            </div>
-            <div>Historico de Pedidos</div>
+                <BoxEndereco>
+                    <TituloEndereco>Endereço cadastrado</TituloEndereco>
+                    {perfil ?
+                    <Endereco>{perfil.address}</Endereco> : <p>Carregando...</p>}
+                </BoxEndereco>
+
+            <Historico>Histórico de Pedidos</Historico>
+            <Linha />
 
         </Container>
 
