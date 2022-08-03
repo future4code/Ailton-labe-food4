@@ -36,18 +36,37 @@ const Restaurantes = () =>{
         axios.get(`${BASE_URL}/restaurants/${params.id}`, header)
         .then((resp) =>{
             setRestauranteEscolhido(resp.data.restaurant)  
+            console.log(resp)
          })
          .catch((err) =>{
              console.log("Errou no detalhes", err.response)
          })
     }
    
-    const mapeandoComida = restauranteEscolhido.products && restauranteEscolhido.products.map((comida) => {
-        return <DetalhesCard key={comida.id}>comida={comida}</DetalhesCard>
+    const mapeandoComida = restauranteEscolhido.products && restauranteEscolhido.products
+    .map((comida) => {
+        return <DetalhesCard key={comida.id} comida={comida}/> 
     })
+    
+    // const categoriasFiltradas = mapeandoComida.filter((item, id) =>{
+    //     return mapeandoComida.indexOf(item) === id
+    // })
+    // console.log(mapeandoComida)
 
     return (
        <Container>
+        <Cabecalho>
+        <button onClick={() => goToFeed(navigate)}>Voltar</button>
+        <NomeApp>Restaurante</NomeApp>
+        </Cabecalho>
+        <div>
+            <p>Produdos Principais</p>
+
+            <p>Acompanhamentos</p>
+
+            <p>Bebidas</p>
+            
+        </div>
         {mapeandoComida}
         </Container>
     )
