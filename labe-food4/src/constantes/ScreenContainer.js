@@ -20,12 +20,12 @@ width: 264px;
 
 `
 
-export const CardGeral = styled.button`
-    width: 328px;
-    height: 188px;
+export const CardGeral = styled.div`
+    width: 80%;
     padding: 0 0 16px;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
+    display: flex;
 `
 
 export const ImagemCard = styled.img`
