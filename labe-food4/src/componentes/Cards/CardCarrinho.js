@@ -34,13 +34,13 @@ flex-direction:column;
 
 `
 
-export const DetalhesCard = (props) => {
+export const CardCarrinho = (props) => {
     const comida = props.comida
     const { requests, states, setters } = useContext(GlobalContext)
-    const { adicionaCarrinho } = requests
     const { carrinho } = states
 
-    console.log(carrinho)
+    console.log(comida)
+
 
     return (
         <Countainer>
@@ -54,7 +54,7 @@ export const DetalhesCard = (props) => {
             <Rodape>
                 <p>{comida.description}</p>
                 <span>R${comida.price.toFixed(2).replace(".", ",")}</span>
-                <button onClick={() => adicionaCarrinho(comida)}>Adiconar</button>
+                <button>Remover</button>
             </Rodape>
         </Countainer>
     )
