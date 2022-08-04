@@ -1,8 +1,9 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { ImagemCard } from "../../constantes/ScreenContainer"
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import { useContext } from "react";
+import Modal from "react-modal"
 
 const Countainer = styled.div`
 display:flex;
@@ -32,13 +33,36 @@ margin-bottom: 0.5rem;
 justify-content: space-between;
 flex-direction:column;
 `
-
+const ModalStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 export const DetalhesCard = (props) => {
     const comida = props.comida
     const { requests, states, setters } = useContext(GlobalContext)
     const { adicionaCarrinho } = requests
     const { carrinho } = states
+    const [modalIsOpen, setIsOpen] = useState(false)
+
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+        adicionaCarrinho(comida)
+    }
+
+    console.log(carrinho)
+
 
     return (
         <Countainer>
@@ -51,8 +75,45 @@ export const DetalhesCard = (props) => {
             <Rodape>
                 <p>{comida.description}</p>
                 <span>R${comida.price.toFixed(2).replace(".", ",")}</span>
-                <button onClick={() => adicionaCarrinho(comida)}>Adiconar</button>
+
+                <div>
+                    <button onClick={openModal}>Adicionar</button>
+                    <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Example Modal"
+            style={ModalStyles}
+            aria={{
+              labelledby: "heading",
+              describedby: "full_description",
+            }}
+            ariaHideApp={false}
+          >
+            <h3 id="heading">Selecione a Quantidade Desejada</h3>
+            <div id="full_description">
+             
+            <select>
+                    <option value='' disabled style={{ display: 'none' }}></option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                    <option value={6}>6</option>
+                    <option value={7}>7</option>
+                    <option value={8}>8</option>
+                    <option value={9}>9</option>
+                    <option value={9}>9</option>
+                    <option value={10}>10</option>
+                </select>
+
+              <button
+                onClick={closeModal}
+              >adicionar</button>
+            </div>
+          </Modal>
+                </div>
             </Rodape>
         </Countainer>
-    )
-}
+    );
+};

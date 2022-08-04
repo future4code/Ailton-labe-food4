@@ -37,7 +37,7 @@ export const NavBar = styled.div`
 display: flex;
 justify-content: space-around;
 align-items: center;
-position: fixed;
+/* position: fixed; */
 background-color: white;
 bottom: 0;
 width: 100%;
@@ -106,4 +106,8 @@ export const Entrega = styled.div`
 
 export const CardMargem = styled.div`
 padding-bottom: 2rem;
+`
+
+export const FormadePagamento = styled.p `
+border-bottom: 1px solid black;
 `
