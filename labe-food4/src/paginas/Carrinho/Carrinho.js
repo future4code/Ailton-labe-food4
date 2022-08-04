@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NomeApp, CardMargem, Container, Icons, NavBar, Cabecalho, Endereco, TituloEndereco, BoxEndereco, NomeRestaurante, Entrega } from "./Style";
+import { NomeApp, FormadePagamento, CardMargem, Container, Icons, NavBar, Cabecalho, Endereco, TituloEndereco, BoxEndereco, NomeRestaurante, Entrega } from "./Style";
 import { goToCarrinho, goToFeed, goToPerfil } from "../../routes/Coordenator";
 import { useNavigate } from "react-router-dom";
 import cart from "../../assets/shopping-cart-laranja.png"
@@ -26,15 +26,16 @@ const Carrinho = () => {
     })
 
 
-    const carrinhoSoma = carrinho.map((item)=>{
-        let newSomaCarrinho = soma
-        let newSoma = item.price * item.amount
-        setSoma(newSomaCarrinho + newSoma)
-      });
+    const carrinhoSoma = carrinho.map((item) => {
+        return item.price * item.amount
+    });
+    let sum = 0;
+    for (let i = 0; i < carrinho.length; i++) {
+        sum += carrinhoSoma[i];
+    }
 
+    const carrinhoTotal = sum + restauranteEscolhido.shipping
 
-
-    console.log(carrinho)
 
     return (
         <Container>
@@ -48,16 +49,44 @@ const Carrinho = () => {
                     <Endereco>{perfil.address}</Endereco> : <p>Carregando...</p>}
             </BoxEndereco>
 
+            <CardMargem>
+                {carrinho.length !== 0 ? (
+                    <div>
+                        <NomeRestaurante>{restauranteEscolhido.name}</NomeRestaurante>
+                        <Entrega>{restauranteEscolhido.address}</Entrega>
+                        <Entrega>{restauranteEscolhido.deliveryTime}min</Entrega>
+                        <div>{mapCarrinho}</div>
+                    </div>
+                ) : (
+                    <p>Não tem pedido</p>
+                )}
+            </CardMargem>
+
             {carrinho.length !== 0 ? (
-                <CardMargem>
-                    <NomeRestaurante>{restauranteEscolhido.name}</NomeRestaurante>
-                    <Entrega>{restauranteEscolhido.address}</Entrega>
-                    <Entrega>{restauranteEscolhido.deliveryTime}min</Entrega>
-                    <div>{mapCarrinho}</div>
-                </CardMargem>
+                <div>
+                    <p>SUBTOTAL : R${sum.toFixed(2).replace(".", ",")}</p>
+                    <p>Frete : R$ {restauranteEscolhido.shipping.toFixed(2).replace(".", ",")}</p>
+                    <p>TOTAL : R${carrinhoTotal.toFixed(2).replace(".", ",")}</p>
+                </div>
             ) : (
-                <p>Não tem pedido</p>
+                <p></p>
             )}
+
+                <FormadePagamento>Forma de Pagamento</FormadePagamento>
+
+            <div>
+                <input type="radio" id="credito" name="fav_language" value="credito" />
+                <label htmlFor="credito">Cartão de Crédito</label><br />
+
+                <input type="radio" id="dinheiro" name="fav_language" value="dinheiro" />
+                <label htmlFor="dinheiro">Dinheiro</label><br />
+
+                <input type="radio" id="pix" name="fav_language" value="pix" />
+                <label htmlFor="pix">Pix</label>
+            </div>
+
+            <button>Confirnar</button>
+
 
             <NavBar>
                 <Icons onClick={() => goToFeed(navigate)} src={home} alt="home" />
@@ -65,10 +94,7 @@ const Carrinho = () => {
                 <Icons onClick={() => goToPerfil(navigate)} src={avatar} alt="avatar" />
             </NavBar>
 
-            <div>
-                <span>SUBTOTAL</span> 
-                {soma}
-            </div>
+
 
         </Container>
     )

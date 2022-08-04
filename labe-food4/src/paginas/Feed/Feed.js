@@ -42,6 +42,7 @@ const Feed = () =>{
     const categorias = restaurantes?.map((restauranteCategoria) => {
       return restauranteCategoria.category;
   });
+
   const categoriasFiltrados = categorias?.filter((item, index) => {
       return categorias.indexOf(item) === index;
   });
@@ -67,7 +68,6 @@ const Feed = () =>{
       <Carousel showThumbs={false}>
             {categoriasFiltrados?.map((categoria) => (
                 <Categorias key={categoria}
-                            
                 >
                   {categoria}
                 </Categorias>
