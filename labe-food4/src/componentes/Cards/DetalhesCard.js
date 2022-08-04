@@ -44,13 +44,19 @@ const ModalStyles = {
     },
 };
 
+const SelectModal = styled.select`
+width: 80%;
+height: 2rem;
+`
+
 export const DetalhesCard = (props) => {
     const comida = props.comida
     const { requests, states, setters } = useContext(GlobalContext)
     const { adicionaCarrinho } = requests
-    const { carrinho } = states
+    const { carrinho, amount, carrinhoProdutos } = states
+    const {setAmount, setCarrinhoProdutos} = setters
     const [modalIsOpen, setIsOpen] = useState(false)
-
+  
 
     function openModal() {
         setIsOpen(true);
@@ -58,11 +64,16 @@ export const DetalhesCard = (props) => {
 
     function closeModal() {
         setIsOpen(false);
-        adicionaCarrinho(comida)
+        adicionaCarrinho(comida, amount)
+    }
+
+
+    const seleciona = (event) =>{
+        setAmount(event.target.value)
     }
 
     console.log(carrinho)
-
+    
 
     return (
         <Countainer>
@@ -79,39 +90,40 @@ export const DetalhesCard = (props) => {
                 <div>
                     <button onClick={openModal}>Adicionar</button>
                     <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            contentLabel="Example Modal"
-            style={ModalStyles}
-            aria={{
-              labelledby: "heading",
-              describedby: "full_description",
-            }}
-            ariaHideApp={false}
-          >
-            <h3 id="heading">Selecione a Quantidade Desejada</h3>
-            <div id="full_description">
-             
-            <select>
-                    <option value='' disabled style={{ display: 'none' }}></option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                    <option value={6}>6</option>
-                    <option value={7}>7</option>
-                    <option value={8}>8</option>
-                    <option value={9}>9</option>
-                    <option value={9}>9</option>
-                    <option value={10}>10</option>
-                </select>
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        contentLabel="Example Modal"
+                        style={ModalStyles}
+                        aria={{
+                            labelledby: "heading",
+                            describedby: "full_description",
+                        }}
+                        ariaHideApp={false}
+                    >
+                        <h3 id="heading">Selecione a Quantidade Desejada</h3>
+                        <div id="full_description">
 
-              <button
-                onClick={closeModal}
-              >adicionar</button>
-            </div>
-          </Modal>
+                            <SelectModal value={amount}
+                            onChange={seleciona}
+                            >
+                                <option value='' disabled style={{ display: 'none' }}></option>
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                                <option value={6}>6</option>
+                                <option value={7}>7</option>
+                                <option value={8}>8</option>
+                                <option value={9}>9</option>
+                                <option value={10}>10</option>
+                            </SelectModal>
+
+                            <button
+                                onClick={closeModal}
+                            >adicionar</button>
+                        </div>
+                    </Modal>
                 </div>
             </Rodape>
         </Countainer>

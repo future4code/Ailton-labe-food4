@@ -1,7 +1,9 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-height: 100%;
+position: relative;
+width: 428px;
+height: 1134px;
 `   
 
 export const Cabecalho = styled.div`

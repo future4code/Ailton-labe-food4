@@ -15,6 +15,7 @@ const GlobalState = (props) => {
     const [carrinho, setCarrinho] = useState([]);
     const [carrinhoProdutos, setCarrinhoProdutos] = useState([]);
     const [restauranteAtual, setRestauranteAtual] = useState([]);
+    const [amount, setAmount] = useState(0)
 
 
     const PegarRestaurantes = (goToCadastroEndereco, navigate) => {
@@ -96,13 +97,13 @@ const GlobalState = (props) => {
             })
     }
 
-    const adicionaCarrinho = (newItem) => {
+    const adicionaCarrinho = (newItem, amount) => {
         const index = carrinho.findIndex((i) => i.id === newItem.id);
         const newCart = [...carrinho];
         if (index === -1) {
-          newCart.push({ ...newItem, amount: 1 });
+          newCart.push({ ...newItem, amount: amount });
         } else {
-          newCart[index].amount += 1;
+          newCart[index].amount += amount;
         }
         setCarrinho(newCart);
         alert(`${newItem.name} foi adicionado ao seu carrinho!`);
@@ -120,14 +121,14 @@ const GlobalState = (props) => {
 
     const states = {
         restaurantes, perfil, historicoPedidos, carrinho,
-        carrinhoProdutos, restauranteEscolhido, categoria, restauranteAtual, 
+        carrinhoProdutos, restauranteEscolhido, categoria, restauranteAtual, amount,
     }
     const setters = {
         setRestaurantes, setPerfil, setHistoricoPedidos, setCarrinho, setCarrinhoProdutos,
-        setRestauranteEscolhido, setCategoria, setRestauranteAtual
+        setRestauranteEscolhido, setCategoria, setRestauranteAtual, setAmount
     }
     const requests = { PegarRestaurantes, PegarPerfil, PegarHistoricoPedidos, verDetalhes, adicionaCarrinho,
-        removeToCarrinho,
+        removeToCarrinho
      }
 
     const Provider = GlobalContext.Provider
