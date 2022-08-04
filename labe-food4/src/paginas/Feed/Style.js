@@ -4,9 +4,11 @@ export const Container = styled.div`
 height: 100%;
 `   
 
-export const Cabecalho = styled.h3 `
-display:flex;
-justify-content:center;
+export const Cabecalho = styled.div`
+display: flex;
+justify-content: center;
+align-items: flex-end;
+height: 64px;
 font-size: 16px;
 border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 padding-bottom:0.5rem;
@@ -48,8 +50,12 @@ object-fit: contain;
 
 export const NavBar = styled.div`
 display: flex;
-justify-content:space-around;
+justify-content: space-around;
 align-items: center;
+position: fixed;
+background-color: white;
+bottom: 0;
+width: 100%;
 height: 49px;
 `
 
@@ -64,7 +70,6 @@ border-radius: 5px;
 `
 
 export const Categorias = styled.button`
-    
     cursor: pointer;
     margin: 0 2.8rem 0 0;
     padding: 2rem;

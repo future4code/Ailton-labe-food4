@@ -10,8 +10,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import cart from "../../assets/shopping-cart.png"
 import avatar from "../../assets/avatar.png"
-import home from "../../assets/homepage.png"
-
+import home from "../../assets/homepage-laranja.png"
 
 const Feed = () =>{
     const navigate = useNavigate()
@@ -53,7 +52,6 @@ const Feed = () =>{
        value={query}
        onChange={updateQuery} 
        />
-
       </ContainerPesquisa>
 
       <Carousel showThumbs={false}>

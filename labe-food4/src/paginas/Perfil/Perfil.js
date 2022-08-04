@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
-import { Container, Endereco, Linha, Historico } from "./Style";
-import { Cabecalho } from "./Style";
+import { Container, Endereco, Linha, Historico, NomeApp, Cabecalho } from "./Style";
 import { DadosPessoal } from "./Style";
 import { PerfilLetras, TituloEndereco } from "./Style";
 import { BoxEndereco } from "./Style";
@@ -16,9 +15,9 @@ import { goToFeed } from "../../routes/Coordenator";
 import { goToCarrinho } from "../../routes/Coordenator";
 import { goToPerfil } from "../../routes/Coordenator";
 import cart from "../../assets/shopping-cart.png"
-import avatar from "../../assets/avatar.png"
+import avatar from "../../assets/avatar-laranja.png"
 import home from "../../assets/homepage.png"
-import edit from "../../assets/edit@2x.png"
+import edit from "../../assets/edit.png"
 
 const Perfil = () => {
     const navigate = useNavigate()
@@ -37,41 +36,57 @@ const Perfil = () => {
         return (
           <p key={pedido.id} pedido={pedido}/>
         )
-      }) : <p>Voce nao tem pedidos!</p>
+      }) : <p>Você ainda não realizou nenhum pedido!</p>
 
 
 
     return (
-        <Container>
-            <Cabecalho>Meu Perfil</Cabecalho>
-            {perfil ?
-                <DadosPessoal>
-                    <BotaoEditar onClick={() => goToEditarPerfil(navigate)} src={edit}></BotaoEditar>
-                    <PerfilLetras>{perfil.name}</PerfilLetras>
-                    <PerfilLetras>{perfil.email}</PerfilLetras>
-                    <PerfilLetras>{perfil.cpf}</PerfilLetras>
-                </DadosPessoal> : <p>Carregando...</p>}
+      <Container>
+        <Cabecalho>
+          <NomeApp>Meu Perfil</NomeApp> 
+        </Cabecalho>
+        {perfil ? (
+          <DadosPessoal>
+            <BotaoEditar
+              onClick={() => goToEditarPerfil(navigate)}
+              src={edit}
+            ></BotaoEditar>
+            <PerfilLetras>{perfil.name}</PerfilLetras>
+            <PerfilLetras>{perfil.email}</PerfilLetras>
+            <PerfilLetras>{perfil.cpf}</PerfilLetras>
+          </DadosPessoal>
+        ) : (
+          <p>Carregando...</p>
+        )}
 
-                <BoxEndereco>
-                   <BotaoEditar onClick={() => goToEditarEndereco(navigate)} src={edit}></BotaoEditar>
-                    <TituloEndereco>Endereço cadastrado</TituloEndereco>
-                    {perfil ?
-                    <Endereco>{perfil.address}</Endereco> : <p>Carregando...</p>}
-                </BoxEndereco>
+        <BoxEndereco>
+          <BotaoEditar
+            onClick={() => goToEditarEndereco(navigate)}
+            src={edit}
+          ></BotaoEditar>
+          <TituloEndereco>Endereço cadastrado</TituloEndereco>
+          {perfil ? (
+            <Endereco>{perfil.address}</Endereco>
+          ) : (
+            <p>Carregando...</p>
+          )}
+        </BoxEndereco>
 
-            <Historico>Histórico de Pedidos</Historico>
-            <Linha />
+        <Historico>Histórico de Pedidos</Historico>
+        <Linha />
 
-            {mapPedidos}
+        {mapPedidos}
 
-            <NavBar>
+        <NavBar>
           <Icons onClick={() => goToFeed(navigate)} src={home} alt="home" />
           <Icons onClick={() => goToCarrinho(navigate)} src={cart} alt="cart" />
-          <Icons onClick={() => goToPerfil(navigate)} src={avatar} alt="avatar" />
-            
-       </NavBar>
-        </Container>
-
+          <Icons
+            onClick={() => goToPerfil(navigate)}
+            src={avatar}
+            alt="avatar"
+          />
+        </NavBar>
+      </Container>
     )
 }
 

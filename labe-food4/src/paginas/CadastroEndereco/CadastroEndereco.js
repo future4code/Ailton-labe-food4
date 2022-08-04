@@ -3,9 +3,10 @@ import { useForm } from "../../hooks/useForm";
 import {BASE_URL} from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { goToFeed } from "../../routes/Coordenator";
+import { goToFeed, goReturn } from "../../routes/Coordenator";
 import { BotaoGeral } from "../../constantes/ScreenContainer";
-
+import { Container, Cabecalho, NomeApp, Back } from "./Style";
+import back from "../../assets/back.png"
 
 const CadastroEndereco = () =>{
     const navigate = useNavigate()
@@ -36,9 +37,11 @@ const CadastroEndereco = () =>{
     }
 
     return (
-       <div>
-        <div>Header</div>
-            <h2>Cadastrar Endereço</h2>
+       <Container>
+         <Cabecalho>
+            <Back onClick={() => goReturn(navigate)} src={back} />
+          </Cabecalho>
+          <NomeApp>Meu endereço</NomeApp>
             <form onSubmit={CadastrarEndereco}>
             <div>
                 <input
@@ -93,7 +96,7 @@ const CadastroEndereco = () =>{
             </div>
             <BotaoGeral>Criar</BotaoGeral>
             </form>
-       </div>
+       </Container>
     )
 }
 
