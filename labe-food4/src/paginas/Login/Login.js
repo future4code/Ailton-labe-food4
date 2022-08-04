@@ -36,7 +36,7 @@ const Login = () => {
     return (
       <Container>
         <Cabecalho>
-          <NomeApp>Seta voltar</NomeApp>
+          <NomeApp>Login</NomeApp>
         </Cabecalho>
         <LogoRappi src={logo} alt={"logo"} />
         <Titulo>Cadastrar</Titulo>

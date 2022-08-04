@@ -38,9 +38,9 @@ export const CardCarrinho = (props) => {
     const comida = props.comida
     const { requests, states, setters } = useContext(GlobalContext)
     const { carrinho } = states
+    const {removeToCarrinho} = requests
 
-    console.log(comida)
-
+    
 
     return (
         <Countainer>
@@ -54,7 +54,7 @@ export const CardCarrinho = (props) => {
             <Rodape>
                 <p>{comida.description}</p>
                 <span>R${comida.price.toFixed(2).replace(".", ",")}</span>
-                <button>Remover</button>
+                <button onClick={() => removeToCarrinho(comida.id)}>Remover</button>
             </Rodape>
         </Countainer>
     )

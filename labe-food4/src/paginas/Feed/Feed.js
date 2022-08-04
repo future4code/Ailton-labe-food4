@@ -11,12 +11,18 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import cart from "../../assets/shopping-cart.png"
 import avatar from "../../assets/avatar.png"
 import home from "../../assets/homepage-laranja.png"
+import {useProtectedPage} from "../../hooks/useProtectedPage"
+import { goToCadastroEndereco } from "../../routes/Coordenator";
 
 const Feed = () =>{
+    useProtectedPage()
     const navigate = useNavigate()
-    const  {states} = useContext(GlobalContext)
+    const  {states, requests} = useContext(GlobalContext)
     const {restaurantes, restaurantesDetalhes} = states
+    const {PegarRestaurantes} = requests
     const [query, setQuery] = useState("")
+
+
   
     const filterRestaurantes = restaurantes && restaurantes.filter(restaurante =>{
       return restaurante.name.toLowerCase().includes(query.toLowerCase()) ? true : false
@@ -39,6 +45,10 @@ const Feed = () =>{
   const categoriasFiltrados = categorias?.filter((item, index) => {
       return categorias.indexOf(item) === index;
   });
+
+  useEffect(() => {
+    PegarRestaurantes(goToCadastroEndereco, navigate)
+}, [])
 
     return (
        <Container>
