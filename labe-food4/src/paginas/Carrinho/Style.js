@@ -103,3 +103,7 @@ export const Entrega = styled.div`
     letter-spacing: -0.39px;
     color: #b8b8b8;
 `
+
+export const CardMargem = styled.div`
+padding-bottom: 2rem;
+`

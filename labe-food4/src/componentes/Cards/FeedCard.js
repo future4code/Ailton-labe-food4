@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { ImagemCard } from "../../constantes/ScreenContainer"
 import { goToRestaurante } from "../../routes/Coordenator";
 
+
 const Countainer = styled.div`
 display:flex;
 border: 1px solid black;

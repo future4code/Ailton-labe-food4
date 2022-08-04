@@ -31,8 +31,8 @@ margin-right: 1rem;
 margin-bottom: 0.5rem;
 justify-content: space-between;
 flex-direction:column;
-
 `
+
 
 export const DetalhesCard = (props) => {
     const comida = props.comida
@@ -40,14 +40,11 @@ export const DetalhesCard = (props) => {
     const { adicionaCarrinho } = requests
     const { carrinho } = states
 
-    console.log(carrinho)
-
     return (
         <Countainer>
             <div>
                 <ImagemCard src={comida.photoUrl} />
             </div>
-            <div>Quantidade: {comida.amount}</div>
             <div>
                 <Nomecomida>{comida.name}</Nomecomida>
             </div>

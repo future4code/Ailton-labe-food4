@@ -5,7 +5,6 @@ import axios from 'axios'
 import { BASE_URL } from "../../constantes/BASE_URL"
 
 
-
 const GlobalState = (props) => {
 
     const [restaurantes, setRestaurantes] = useState([])
@@ -17,7 +16,8 @@ const GlobalState = (props) => {
     const [carrinhoProdutos, setCarrinhoProdutos] = useState([]);
     const [restauranteAtual, setRestauranteAtual] = useState([]);
 
-    const PegarRestaurantes = () => {
+
+    const PegarRestaurantes = (goToCadastroEndereco, navigate) => {
         const url = `${BASE_URL}/restaurants`
         const token = localStorage.getItem("token")
         const header = {
@@ -31,7 +31,12 @@ const GlobalState = (props) => {
 
             })
             .catch((err) => {
-                console.log("Deu ruim", err.response)
+                console.log("Deu ruim", err.response.data.message)
+                
+                if(err.response.data.message === "Usuário não possui endereço cadastrado") {
+                    alert("Voce precisa cadastrar um endereço!")
+                    goToCadastroEndereco(navigate)
+                }
             })
     }
 
@@ -69,7 +74,7 @@ const GlobalState = (props) => {
             })
     }
 
-    const verDetalhes = (paramsId) => {
+    const verDetalhes = (paramsId, goToCadastroEndereco, navigate) => {
         const token = localStorage.getItem("token")
         const header = {
             headers: {
@@ -84,6 +89,10 @@ const GlobalState = (props) => {
             })
             .catch((err) => {
                 console.log("Errou no detalhes", err.response)
+                if(err.response.data.message === "Usuário não possui endereço cadastrado") {
+                    alert("Voce precisa cadastrar um endereço!")
+                    goToCadastroEndereco(navigate)
+                }
             })
     }
 
@@ -99,9 +108,15 @@ const GlobalState = (props) => {
         alert(`${newItem.name} foi adicionado ao seu carrinho!`);
       };
 
-    useEffect(() => {
-        PegarRestaurantes()
-    }, [])
+      const removeToCarrinho =(comidaId) =>{
+        const novaLista = carrinho.filter((comida) =>{
+          return comidaId !== comida.id
+        })
+        alert(`Comida foi removida ao seu carrinho!`)
+        setCarrinho(novaLista)
+    }
+
+    
 
     const states = {
         restaurantes, perfil, historicoPedidos, carrinho,
@@ -112,7 +127,7 @@ const GlobalState = (props) => {
         setRestauranteEscolhido, setCategoria, setRestauranteAtual
     }
     const requests = { PegarRestaurantes, PegarPerfil, PegarHistoricoPedidos, verDetalhes, adicionaCarrinho,
-    
+        removeToCarrinho,
      }
 
     const Provider = GlobalContext.Provider
