@@ -8,13 +8,16 @@ import home from "../../assets/homepage.png"
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import { useContext } from "react";
 import { CardCarrinho } from "../../componentes/Cards/CardCarrinho";
+import { BASE_URL } from "../../constantes/BASE_URL";
+import axios from "axios";
 
 const Carrinho = () => {
     const navigate = useNavigate()
-    const { requests, states } = useContext(GlobalContext)
+    const { requests, states, setters } = useContext(GlobalContext)
     const { PegarPerfil } = requests
-    const { perfil, restauranteEscolhido, carrinho } = states
-    const [soma, setSoma] = useState(0)
+    const { perfil, restauranteEscolhido, carrinho, amount } = states
+    const {setCarrinho, setAmount} = setters
+    const [formaPagamento, setFormaPagamento] = useState("")
 
     useEffect(() => {
         PegarPerfil()
@@ -35,6 +38,39 @@ const Carrinho = () => {
     }
 
     const carrinhoTotal = sum + restauranteEscolhido.shipping
+
+    const PegarFormaPagamento = (event) =>{
+        setFormaPagamento(event.target.value)
+    }
+    
+    const FazerPedido = (carrinho, Pagamento) => {
+        const url = `${BASE_URL}/restaurants/${restauranteEscolhido.id}/order`
+        const token = localStorage.getItem("token")
+        const body = {
+            // products:[{
+            //     id: carrinho.id,
+            //     quantity: carrinho.amount,
+            // }],
+            carrinho,
+            paymentMethod: Pagamento,
+        }
+        const header = {
+            headers: {
+                auth: token
+            },
+        }
+        axios.post(url, header, body)
+        .then((resp) =>{
+            alert("Sucesso")
+            setFormaPagamento("")
+            setCarrinho("")
+            setAmount(0)
+            console.log(resp)
+        })
+        .catch((err) =>{
+            console.log("Deu erro", err )
+        })
+    }
 
 
     return (
@@ -74,7 +110,7 @@ const Carrinho = () => {
 
                 <FormadePagamento>Forma de Pagamento</FormadePagamento>
 
-            <div>
+            <div onChange={PegarFormaPagamento}>
                 <input type="radio" id="credito" name="fav_language" value="credito" />
                 <label htmlFor="credito">Cartão de Crédito</label><br />
 
@@ -85,7 +121,7 @@ const Carrinho = () => {
                 <label htmlFor="pix">Pix</label>
             </div>
 
-            <button>Confirnar</button>
+            <button onClick={() => FazerPedido(carrinho, formaPagamento)}>Confirnar</button>
 
 
             <NavBar>
