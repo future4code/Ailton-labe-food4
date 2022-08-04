@@ -6,6 +6,19 @@ height: 100vh;
 background-color: blue;
 `
 
+export const InputsGeral = styled.input`
+width: 80%;
+height: 56px;
+font-family: Roboto;
+font-size: 16px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+color: #000;
+`
+
 export const InputsUser = styled.input`
 width: 264px;
   height: 18px;

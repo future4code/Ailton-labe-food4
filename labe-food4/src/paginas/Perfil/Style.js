@@ -25,7 +25,7 @@ border: solid 1px #000;
 `
 
 export const BoxEndereco = styled.div`
-width: 360px;
+width: 100%;
 height: 76px;
 margin: 16px 0;
 padding: 16px;
@@ -61,12 +61,28 @@ letter-spacing: -0.39px;
 color: #000;
 ` 
 
-export const Cabecalho = styled.h3 `
+export const Cabecalho = styled.div `
 display:flex;
-justify-content:center;
+justify-content: center;
+align-items: flex-end;
+height: 64px;
 font-size: 16px;
 border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 padding-bottom:0.5rem;
+`
+
+export const NomeApp = styled.div`
+width: 48px;
+height: 19px;
+font-family: Roboto;
+font-size: 16px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+text-align: center;
+color: #000;
 `
 
 export const DadosPessoal = styled.div `
@@ -87,7 +103,7 @@ margin-left: 0.5rem;
 `
 export const BotaoEditar = styled.img `
 position: absolute;
-left: 20rem;
+left: 21rem;
 width: 27px;
 height: 27px;
 object-fit: contain;
@@ -95,8 +111,12 @@ object-fit: contain;
 
 export const NavBar = styled.div`
 display: flex;
-justify-content:space-around;
+justify-content: space-around;
 align-items: center;
+position: fixed;
+background-color: white;
+bottom: 0;
+width: 100%;
 height: 49px;
 `
 export const Icons = styled.img`

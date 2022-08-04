@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { NomeApp, Container, Icons, NavBar, Cabecalho, Endereco, TituloEndereco, BoxEndereco, NomeRestaurante, Entrega } from "./Style";
 import { goToCarrinho, goToFeed, goToPerfil } from "../../routes/Coordenator";
 import { useNavigate } from "react-router-dom";
-import cart from "../../assets/shopping-cart.png"
+import cart from "../../assets/shopping-cart-laranja.png"
 import avatar from "../../assets/avatar.png"
 import home from "../../assets/homepage.png"
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import { useContext } from "react";
 import { CardCarrinho } from "../../componentes/Cards/CardCarrinho";
-
 
 const Carrinho = () => {
     const navigate = useNavigate()

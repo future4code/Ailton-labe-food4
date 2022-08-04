@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import { FeedCard } from "../../componentes/Cards/FeedCard"
-import { NomeApp, Container, Cabecalho, CardGeral, ImagemCard, NomeRestaurante, Entrega, FreteETempo } from "./Style";
+import { NomeApp, Container, Cabecalho, CardGeral, ImagemCard, NomeRestaurante, Entrega, FreteETempo, Back } from "./Style";
 import { goToCarrinho, goToFeed, goToPerfil } from "../../routes/Coordenator";
 import { useNavigate, useParams } from "react-router-dom";
 import { Categorias } from "./Style";
 import { Carousel } from "react-responsive-carousel";
 import { DetalhesCard } from "../../componentes/Cards/DetalhesCard";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import back from "../../assets/back.png"
 import cart from "../../assets/shopping-cart.png"
 import avatar from "../../assets/avatar.png"
 import home from "../../assets/homepage.png"
@@ -56,7 +57,7 @@ const Restaurantes = () => {
     return (
         <Container>
             <Cabecalho>
-                <button onClick={() => goToFeed(navigate)}>Voltar</button>
+                <Back onClick={() => goToFeed(navigate)} src={back} />
                 <NomeApp>Restaurante</NomeApp>
             </Cabecalho>
             

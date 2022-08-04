@@ -42,3 +42,8 @@ export const goToRestaurante = (navigate, id) =>{
     navigate(`/restaurante/${id}`)
 }
 
+export const goReturn = (navigate) =>{
+    navigate(-1)
+}
+
+

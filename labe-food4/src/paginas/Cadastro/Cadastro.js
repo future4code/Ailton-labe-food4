@@ -3,9 +3,10 @@ import { useForm } from "../../hooks/useForm";
 import {BASE_URL} from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { LogoRappi, Titulo, InputEstilo, Container, BotaoEstilo, TextoBotao, AreaBotao } from "./Style";
+import { LogoRappi, Titulo, InputEstilo, Container, BotaoEstilo, TextoBotao, AreaBotao, Cabecalho, NomeApp, Back } from "./Style";
 import logo from "../../assets/logo-future-eats-invert.png"
-import { goToCadastroEndereco } from "../../routes/Coordenator";
+import { goToCadastroEndereco, goReturn } from "../../routes/Coordenator";
+import back from "../../assets/back.png"
 
 const Cadastro = () =>{
     const navigate = useNavigate()
@@ -43,10 +44,11 @@ const Cadastro = () =>{
   }
 }
 
-
     return (
        <Container>
-        <div>Header</div>
+        <Cabecalho>
+            <Back onClick={() => goReturn(navigate)} src={back} alt="back" />
+        </Cabecalho>
             <LogoRappi src={logo} alt={"logo"} />
             <Titulo>Cadastrar</Titulo>
             <form onSubmit={Cadastrar}>

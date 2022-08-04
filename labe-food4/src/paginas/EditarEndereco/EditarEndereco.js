@@ -3,12 +3,13 @@ import { useForm } from "../../hooks/useForm";
 import {BASE_URL} from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BotaoGeral } from "../../constantes/ScreenContainer";
-import { goToPerfil } from "../../routes/Coordenator";
+import { BotaoGeral, Inputs, InputsGeral} from "../../constantes/ScreenContainer";
+import { goToPerfil, goReturn } from "../../routes/Coordenator";
+import { Cabecalho, NomeApp, Container, Back } from "./Style";
+import back from "../../assets/back.png"
 
 const EditarEndereco = () =>{
     
-
     const navigate = useNavigate()
     const { form, onChange } = useForm({ street: "", number: "", neighbourhood: "", city: "", state: "", complement: "" })
 
@@ -37,13 +38,14 @@ const EditarEndereco = () =>{
     }
 
     return (
-       <div>
-        <button onClick={() => goToPerfil(navigate)}>Voltar</button>
-        <div>Editar</div>
-            <h2>Editar Endereço</h2>
+       <Container>
+        <Cabecalho>
+        <Back onClick={() => goReturn(navigate)} src={back} alt="back" />
+            <NomeApp>Endereço</NomeApp>
+          </Cabecalho>
             <form onSubmit={CadastrarEndereco}>
             <div>
-                <input
+                <InputsGeral
                  placeholder="Logradouro"
                  value={form.street}
                  onChange={onChange}
@@ -51,7 +53,7 @@ const EditarEndereco = () =>{
                  required
                 />
 
-                <input
+                <InputsGeral
                 placeholder="Numero"
                 value={form.number}
                 onChange={onChange}
@@ -60,14 +62,14 @@ const EditarEndereco = () =>{
                 required
                 />
 
-                <input
+                <InputsGeral
                  placeholder="Complemento"
                  value={form.complement}
                  onChange={onChange}
                  name="complement"
                 />
 
-                <input
+                <InputsGeral
                 placeholder="Bairro"
                 value={form.neighbourhood}
                 onChange={onChange}
@@ -76,7 +78,7 @@ const EditarEndereco = () =>{
                 
                 />
 
-                <input
+                <InputsGeral
                 placeholder="Cidade"
                 value={form.city}
                 onChange={onChange}
@@ -84,7 +86,7 @@ const EditarEndereco = () =>{
                 required
                 />
 
-                 <input
+                 <InputsGeral
                 placeholder="Estado"
                 value={form.state}
                 onChange={onChange}
@@ -95,7 +97,7 @@ const EditarEndereco = () =>{
             </div>
             <BotaoGeral>Salvar</BotaoGeral>
             </form>
-       </div>
+       </Container>
     )
 }
 
