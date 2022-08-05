@@ -109,6 +109,17 @@ const GlobalState = (props) => {
         alert(`${newItem.name} foi adicionado ao seu carrinho!`);
       };
 
+      const adicionaCarrinhoAux = (newItem, quantity) => {
+        const index = carrinho.findIndex((i) => i.id === newItem.id);
+        const newCart = [...carrinho];
+        if (index === -1) {
+          newCart.push({ ...newItem, quantity: quantity });
+        } else {
+          newCart[index].quantity += quantity;
+        }
+        setCarrinhoProdutos(newCart);
+      };
+
       const removeToCarrinho =(comidaId) =>{
         const novaLista = carrinho.filter((comida) =>{
           return comidaId !== comida.id
@@ -128,7 +139,7 @@ const GlobalState = (props) => {
         setRestauranteEscolhido, setCategoria, setRestauranteAtual, setAmount
     }
     const requests = { PegarRestaurantes, PegarPerfil, PegarHistoricoPedidos, verDetalhes, adicionaCarrinho,
-        removeToCarrinho
+        removeToCarrinho, adicionaCarrinhoAux
      }
 
     const Provider = GlobalContext.Provider

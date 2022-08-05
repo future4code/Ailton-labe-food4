@@ -15,16 +15,17 @@ const Carrinho = () => {
     const navigate = useNavigate()
     const { requests, states, setters } = useContext(GlobalContext)
     const { PegarPerfil } = requests
-    const { perfil, restauranteEscolhido, carrinho, amount } = states
-    const {setCarrinho, setAmount} = setters
+    const { perfil, restauranteEscolhido, carrinho, carrinhoProdutos, amount } = states
+    const {setCarrinho, setAmount, setCarrinhoProdutos} = setters
     const [formaPagamento, setFormaPagamento] = useState("")
+    const [auxiliar , setAuxiliar] = useState([])
 
     useEffect(() => {
         PegarPerfil()
     }, [])
 
 
-    const mapCarrinho = carrinho.map((produto) => {
+    const mapCarrinho = carrinho?.map((produto) => {
         return <CardCarrinho key={produto.id} comida={produto} />
     })
 
@@ -43,27 +44,43 @@ const Carrinho = () => {
         setFormaPagamento(event.target.value)
     }
     
-    const FazerPedido = (carrinho, Pagamento) => {
+    const FazerPedido = (carrinhoProdutos, Pagamento) => {
+        
+        console.log("Dentro da requisição FazerPedido" , carrinhoProdutos)
+        const mapCarrinhoAuxiliar = carrinhoProdutos?.map((index) => {
+            
+            return index.id
+        })  
+
+        
+        
         const url = `${BASE_URL}/restaurants/${restauranteEscolhido.id}/order`
         const token = localStorage.getItem("token")
+        console.log("mapCarrinhoAuxiliar:" , mapCarrinhoAuxiliar)
+        
         const body = {
-            // products:[{
-            //     id: carrinho.id,
-            //     quantity: carrinho.amount,
-            // }],
-            carrinho,
-            paymentMethod: Pagamento,
+            products:[{
+                // id: "3vcYYSOEf8dKeTPd7vHe",
+                id: [carrinhoProdutos.id],
+                quantity: [carrinhoProdutos.quantity]
+            }],
+            
+            paymentMethod: formaPagamento,
+
         }
         const header = {
             headers: {
                 auth: token
             },
         }
-        axios.post(url, header, body)
+        
+        
+        axios.post(url, body , header)
         .then((resp) =>{
             alert("Sucesso")
             setFormaPagamento("")
             setCarrinho("")
+            setCarrinhoProdutos("")
             setAmount(0)
             console.log(resp)
         })
@@ -111,17 +128,14 @@ const Carrinho = () => {
                 <FormadePagamento>Forma de Pagamento</FormadePagamento>
 
             <div onChange={PegarFormaPagamento}>
-                <input type="radio" id="credito" name="fav_language" value="credito" />
+                <input type="radio" id="credito" name="fav_language" value="creditcard" />
                 <label htmlFor="credito">Cartão de Crédito</label><br />
 
-                <input type="radio" id="dinheiro" name="fav_language" value="dinheiro" />
+                <input type="radio" id="dinheiro" name="fav_language" value="money" />
                 <label htmlFor="dinheiro">Dinheiro</label><br />
-
-                <input type="radio" id="pix" name="fav_language" value="pix" />
-                <label htmlFor="pix">Pix</label>
             </div>
-
-            <button onClick={() => FazerPedido(carrinho, formaPagamento)}>Confirnar</button>
+            {/* Teste para o estado auxiliar */}
+            <button onClick={() => FazerPedido(carrinhoProdutos, formaPagamento)}>Confirmar</button>
 
 
             <NavBar>
