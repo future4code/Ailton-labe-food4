@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import { FeedCard } from "../../componentes/Cards/FeedCard"
+import { CardCategoria } from "../../componentes/Cards/CardCategoria"
 import { Pesquisa, NomeApp, Icons, NavBar, Cards, ContainerPesquisa, Container, Cabecalho } from "./Style";
 import { goToCarrinho, goToFeed, goToPerfil } from "../../routes/Coordenator";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +39,16 @@ const Feed = () => {
     setQuery(evento.target.value)
   }
 
+   // Categoria do restaurante 
+
+  //  const resCategoria = restaurantes.filter((restau, categoria) => {
+  //   return restau.category === categoria
+  // })
+
+  // const selectedRes = categoriasFiltrados && categoriasFiltrados.map((choosing) => {
+  //   return <CardCategoria key={choosing.id} choosing={choosing} />
+  // })
+
   // Map do Carousel 
   const categorias = restaurantes?.map((restauranteCategoria) => {
     return restauranteCategoria.category;
@@ -66,8 +77,10 @@ const Feed = () => {
       </ContainerPesquisa>
 
       <Carousel showThumbs={false}>
+      {/* {selectedRes} */}
         {categoriasFiltrados?.map((categoria) => (
           <Categorias key={categoria}
+          // onClick={() => resCategoria(categoria)}
           >
             {categoria}
           </Categorias>
