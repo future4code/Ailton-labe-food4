@@ -69,7 +69,10 @@ export const DetalhesCard = (props) => {
         amount > 0 ? adicionaCarrinho(comida , amount) : alert("Selecione uma quantidade.")
 
         //Fiz uma função auxiliar para não interferir com a renderização.
-        amount > 0 ? adicionaCarrinhoAux(comida , amount) : alert("Selecione uma quantidade.")    
+        // amount > 0 ? adicionaCarrinhoAux(comida , amount) : alert("Selecione uma quantidade.")  
+        
+        // Limpa o input
+        setAmount(0)
     }
 
 
