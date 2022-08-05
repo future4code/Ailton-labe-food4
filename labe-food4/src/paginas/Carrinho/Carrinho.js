@@ -15,7 +15,7 @@ const Carrinho = () => {
     const navigate = useNavigate()
     const { requests, states, setters } = useContext(GlobalContext)
     const { PegarPerfil } = requests
-    const { perfil, restauranteEscolhido, carrinho, carrinhoProdutos, amount } = states
+    const { perfil, restauranteEscolhido, carrinho, carrinhoProdutos, amount, somaCarrinho } = states
     const {setCarrinho, setAmount, setCarrinhoProdutos} = setters
     const [formaPagamento, setFormaPagamento] = useState("")
     const [auxiliar , setAuxiliar] = useState([])
@@ -28,6 +28,7 @@ const Carrinho = () => {
     const mapCarrinho = carrinho?.map((produto) => {
         return <CardCarrinho key={produto.id} comida={produto} />
     })
+    console.log("Carrinho", carrinho)
 
 
     const carrinhoSoma = carrinho.map((item) => {
@@ -37,7 +38,6 @@ const Carrinho = () => {
     for (let i = 0; i < carrinho.length; i++) {
         sum += carrinhoSoma[i];
     }
-
     const carrinhoTotal = sum + restauranteEscolhido.shipping
 
     const PegarFormaPagamento = (event) =>{
@@ -46,25 +46,26 @@ const Carrinho = () => {
     
     const FazerPedido = (carrinhoProdutos, Pagamento) => {
         
-        console.log("Dentro da requisição FazerPedido" , carrinhoProdutos)
-        const mapCarrinhoAuxiliar = carrinhoProdutos?.map((index) => {
+        // console.log("Dentro da requisição FazerPedido" , carrinhoProdutos)
+        // const mapCarrinhoAuxiliar = carrinhoProdutos.map((index) => {
             
-            return index.id
-        })  
+        //     return index.id
+        // }) 
 
-        
+        const produtosMapeados = carrinhoProdutos.map((produto) => {
+            return {
+                id: `${produto.id}`,
+                quantity: produto.amount,
+            }
+        })
+        // console.log(produtosMapeados)
         
         const url = `${BASE_URL}/restaurants/${restauranteEscolhido.id}/order`
         const token = localStorage.getItem("token")
-        console.log("mapCarrinhoAuxiliar:" , mapCarrinhoAuxiliar)
+        // console.log("mapCarrinhoAuxiliar:" , mapCarrinhoAuxiliar[0])
         
         const body = {
-            products:[{
-                // id: "3vcYYSOEf8dKeTPd7vHe",
-                id: [carrinhoProdutos.id],
-                quantity: [carrinhoProdutos.quantity]
-            }],
-            
+            products: produtosMapeados,
             paymentMethod: formaPagamento,
 
         }
@@ -74,18 +75,17 @@ const Carrinho = () => {
             },
         }
         
-        
         axios.post(url, body , header)
         .then((resp) =>{
             alert("Sucesso")
             setFormaPagamento("")
-            setCarrinho("")
-            setCarrinhoProdutos("")
+            setCarrinho([])
+            setCarrinhoProdutos([])
             setAmount(0)
             console.log(resp)
         })
         .catch((err) =>{
-            console.log("Deu erro", err )
+            console.log("Deu erro", err.response.data.message )
         })
     }
 
@@ -135,7 +135,7 @@ const Carrinho = () => {
                 <label htmlFor="dinheiro">Dinheiro</label><br />
             </div>
             {/* Teste para o estado auxiliar */}
-            <button onClick={() => FazerPedido(carrinhoProdutos, formaPagamento)}>Confirmar</button>
+            <button onClick={() => FazerPedido(carrinho, formaPagamento)}>Confirmar</button>
 
 
             <NavBar>
