@@ -66,12 +66,10 @@ export const DetalhesCard = (props) => {
         setIsOpen(false);
         
         // console.log("Função closemodal passando pro adicionaCarrinho: " , comida)
-        adicionaCarrinho(comida , amount)
+        amount > 0 ? adicionaCarrinho(comida , amount) : alert("Selecione uma quantidade.")
 
         //Fiz uma função auxiliar para não interferir com a renderização.
-        adicionaCarrinhoAux(comida , amount)
-        
-        
+        amount > 0 ? adicionaCarrinhoAux(comida , amount) : alert("Selecione uma quantidade.")    
     }
 
 
@@ -113,7 +111,7 @@ export const DetalhesCard = (props) => {
                             <SelectModal value={amount}
                             onChange={seleciona}
                             >
-                                <option value='' disabled style={{ display: 'none' }}></option>
+                                <option value={0} disabled style={{ display: 'none' }}></option>
                                 <option value={1}>1</option>
                                 <option value={2}>2</option>
                                 <option value={3}>3</option>
