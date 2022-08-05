@@ -52,7 +52,7 @@ height: 2rem;
 export const DetalhesCard = (props) => {
     const comida = props.comida
     const { requests, states, setters } = useContext(GlobalContext)
-    const { adicionaCarrinho } = requests
+    const { adicionaCarrinho, adicionaCarrinhoAux } = requests
     const { carrinho, amount, carrinhoProdutos } = states
     const {setAmount, setCarrinhoProdutos} = setters
     const [modalIsOpen, setIsOpen] = useState(false)
@@ -64,7 +64,14 @@ export const DetalhesCard = (props) => {
 
     function closeModal() {
         setIsOpen(false);
-        adicionaCarrinho(comida, amount)
+        
+        // console.log("Função closemodal passando pro adicionaCarrinho: " , comida)
+        adicionaCarrinho(comida , amount)
+
+        //Fiz uma função auxiliar para não interferir com a renderização.
+        adicionaCarrinhoAux(comida , amount)
+        
+        
     }
 
 
