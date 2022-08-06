@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NomeApp, FormadePagamento, CardMargem, Container, Icons, NavBar, Cabecalho, Endereco, TituloEndereco, BoxEndereco, NomeRestaurante, Entrega } from "./Style";
+import { NomeApp, Frete, FormadePagamento, CardMargem2, PagamentoBotao,
+     Total, SubTotal, CardMargem, Container, Icons, NavBar, InputPagamento,
+     Cabecalho, Endereco, TituloEndereco, BoxEndereco, NomeRestaurante, Entrega } from "./Style";
 import { goToCarrinho, goToFeed, goToPerfil } from "../../routes/Coordenator";
 import { useNavigate } from "react-router-dom";
 import cart from "../../assets/shopping-cart-laranja.png"
@@ -108,7 +110,7 @@ const Carrinho = () => {
                         <NomeRestaurante>{restauranteEscolhido.name}</NomeRestaurante>
                         <Entrega>{restauranteEscolhido.address}</Entrega>
                         <Entrega>{restauranteEscolhido.deliveryTime}min</Entrega>
-                        <div>{mapCarrinho}</div>
+                        <CardMargem2>{mapCarrinho}</CardMargem2>
                     </div>
                 ) : (
                     <p>Não tem pedido</p>
@@ -117,9 +119,9 @@ const Carrinho = () => {
 
             {carrinho.length !== 0 ? (
                 <div>
-                    <p>SUBTOTAL : R${sum.toFixed(2).replace(".", ",")}</p>
-                    <p>Frete : R$ {restauranteEscolhido.shipping.toFixed(2).replace(".", ",")}</p>
-                    <p>TOTAL : R${carrinhoTotal.toFixed(2).replace(".", ",")}</p>
+                     <Frete>Frete : R$ {restauranteEscolhido.shipping.toFixed(2).replace(".", ",")}</Frete>
+                        <SubTotal>SUBTOTAL : R${sum.toFixed(2).replace(".", ",")}</SubTotal>
+                         <Total>R${carrinhoTotal.toFixed(2).replace(".", ",")}</Total>
                 </div>
             ) : (
                 <p></p>
@@ -127,15 +129,16 @@ const Carrinho = () => {
 
                 <FormadePagamento>Forma de Pagamento</FormadePagamento>
 
-            <div onChange={PegarFormaPagamento}>
+            <InputPagamento onChange={PegarFormaPagamento}>
                 <input type="radio" id="credito" name="fav_language" value="creditcard" />
                 <label htmlFor="credito">Cartão de Crédito</label><br />
 
                 <input type="radio" id="dinheiro" name="fav_language" value="money" />
                 <label htmlFor="dinheiro">Dinheiro</label><br />
-            </div>
+            </InputPagamento>
             {/* Teste para o estado auxiliar */}
-            <button onClick={() => FazerPedido(carrinho, formaPagamento)}>Confirmar</button>
+
+            <PagamentoBotao onClick={() => FazerPedido(carrinho, formaPagamento)}>Confirmar</PagamentoBotao>
 
 
             <NavBar>

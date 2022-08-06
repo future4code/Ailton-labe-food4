@@ -2,17 +2,22 @@ import styled from "styled-components"
 
 export const Container = styled.div`
 height: 100%;
+position: relative;
+width: 428px;
+height: 1134px;
+display: flex; 
+flex-direction: column; 
+border: 1px solid black;   
 `   
 
-export const Cabecalho = styled.div `
+export const Cabecalho = styled.div`
 display: flex;
 justify-content: center;
 align-items: flex-end;
-height: 64px;
+padding-top:0.5rem;
+padding-bottom:0.5rem;
 font-size: 16px;
 border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-padding-bottom:1rem;
-padding-top:1rem;
 `
 
 export const NomeApp = styled.div`
@@ -37,16 +42,14 @@ export const NavBar = styled.div`
 display: flex;
 justify-content: space-around;
 align-items: center;
-/* position: fixed; */
 background-color: white;
-bottom: 0;
-width: 100%;
-height: 49px;
+width: 428px;
+position: fixed;
+    bottom:0;
+    left: 0;
 `
 
 export const BoxEndereco = styled.div`
-width: 360px;
-height: 76px;
 padding: 16px;
 background-color: #eee;
 position: relative;
@@ -105,9 +108,41 @@ export const Entrega = styled.div`
 `
 
 export const CardMargem = styled.div`
-padding-bottom: 2rem;
+padding-bottom: 0.1rem;
+height:80%;
+overflow: scroll;
 `
-
+export const CardMargem2 = styled.div`
+ flex-direction: column; 
+ display: flex;
+ align-items: center;
+`
 export const FormadePagamento = styled.p `
 border-bottom: 1px solid black;
+margin: 4px 8px 0 16px;
+`
+export const InputPagamento = styled.div `
+margin: 4px 8px 0 16px;
+`
+export const PagamentoBotao = styled.button `
+margin: 4px 8px 0 16px;
+height: 3rem;
+background-color: #e86e5a;
+border: none;
+border-radius: 3px;
+margin-top: 0.5rem;
+margin-bottom: 2rem;
+`
+export const SubTotal = styled.p `
+text-align: right;
+margin-right:2rem;
+`
+export const Frete = styled.p `
+text-align: right;
+margin-right:2rem;
+`
+export const Total = styled.p `
+text-align: right;
+margin-right:2rem;
+color: #E86E5A;
 `

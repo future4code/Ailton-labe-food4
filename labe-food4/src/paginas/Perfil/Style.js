@@ -2,6 +2,12 @@ import styled from "styled-components"
 
 export const Container = styled.div`
 height: 100%;
+position: relative;
+width: 428px;
+height: 1134px;
+display: flex; 
+flex-direction: column; 
+border: 1px solid black;   
 `   
 
 export const NomeOrdem = styled.h3`
@@ -18,9 +24,8 @@ border-radius: 8px;
 ` 
 
 export const Historico = styled.div`
-width: 328px;
-height: 18px;
-margin: 16px 16px 8px;
+margin-right: 1rem;
+margin-left: 1rem;
 font-family: Roboto;
 font-size: 16px;
 font-weight: normal;
@@ -32,16 +37,14 @@ color: #000;
 ` 
 
 export const Linha = styled.div`
-width: 328px;
-margin: 0 7px;
+margin-right: 1rem;
+margin-left: 1rem;
 border: solid 1px #000;
 `
 
 export const BoxEndereco = styled.div`
-width: 100%;
-height: 76px;
-margin: 16px 0;
-padding: 16px;
+margin: 1rem 0;
+padding: 1rem;
 background-color: #eee;
 position: relative;
 ` 
@@ -74,20 +77,17 @@ letter-spacing: -0.39px;
 color: #000;
 ` 
 
-export const Cabecalho = styled.div `
-display:flex;
-flex-direction: row;
+export const Cabecalho = styled.div`
+display: flex;
 justify-content: center;
 align-items: flex-end;
-height: 64px;
+padding-top:0.5rem;
+padding-bottom:0.5rem;
 font-size: 16px;
 border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-padding-bottom:0.5rem;
 `
 
 export const NomeApp = styled.div`
-width: 48px;
-height: 19px;
 font-family: Roboto;
 font-size: 16px;
 font-weight: normal;
@@ -105,8 +105,6 @@ flex-direction: column;
 margin-top: 0.5rem;
 margin-bottom: 0.5rem;
 margin-left: 0.5rem;
-height: 102px;
-width: 328px;
 position: relative;
 `
 
@@ -127,14 +125,19 @@ export const NavBar = styled.div`
 display: flex;
 justify-content: space-around;
 align-items: center;
-position: fixed;
 background-color: white;
-bottom: 0;
-width: 100%;
-height: 49px;
+width: 428px;
+position: fixed;
+    bottom:0;
+    left: 0;
 `
 export const Icons = styled.img`
 width: 27px;
 height: 27px;
 object-fit: contain;
+`
+
+export const Mensagem = styled.p`
+margin-right: 1rem;
+margin-left: 1rem;
 `

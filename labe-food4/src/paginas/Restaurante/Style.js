@@ -2,48 +2,64 @@ import styled from "styled-components"
 
 export const Container = styled.div`
 height: 100%;
-`   
+position: relative;
+width: 428px;
+height: 1134px;
+display: flex; 
+flex-direction: column; 
+border: 1px solid black;   
+`  
 
 export const Cabecalho = styled.div`
-display:flex;
-align-items: flex-end;
-height: 64px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-top:0.5rem;
+padding-bottom:0.5rem;
 font-size: 16px;
 border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-padding-bottom:0.5rem;
 `
 
 export const NomeApp = styled.div`
-width: 48px;
-height: 19px;
 font-family: Roboto;
-font-size: 16px;
-font-weight: normal;
-font-stretch: normal;
-font-style: normal;
-line-height: normal;
-letter-spacing: -0.39px;
-text-align: center;
-color: #000;
 `
 
 export const CardGeral = styled.div`
+    flex-direction: column; 
+    display: flex;
     width: 80%;
-    padding: 0 0 16px;
-    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
     border: solid 1px #b8b8b8;
+    margin-top:1rem;
+    justify-content: center;
+    margin-left: 2.5rem;
+`
+
+export const Cards = styled.div `
+height:80%;
+overflow: scroll;
+`
+export const CardsMain = styled.div `
+display:flex;
+flex-direction: column;
+align-items: center;
+`
+
+export const TituloCards = styled.p`
+border-bottom: 1px solid black;
+width:80%;
+margin-left: 2.5rem;
 `
 
 export const ImagemCard = styled.img`
     width: 100%;
     height: 120px;
-    
 `
 
 export const Back = styled.img`
 width: 23px;
 height: 24px;
-margin: 10px 321px 0 16px;
 object-fit: contain;
 `
 

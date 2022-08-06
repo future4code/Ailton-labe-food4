@@ -3,7 +3,7 @@ import { useForm } from "../../hooks/useForm";
 import {BASE_URL} from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { LogoRappi, Titulo, InputEstilo, Container, BotaoEstilo, TextoBotao, AreaBotao, Cabecalho, NomeApp, Back } from "./Style";
+import { LogoRappi, Titulo, Input, DivInput, Container, BotaoEstilo, TextoBotao, AreaBotao, Cabecalho, DivLogo, Back } from "./Style";
 import logo from "../../assets/logo-future-eats-invert.png"
 import { goToCadastroEndereco, goReturn } from "../../routes/Coordenator";
 import back from "../../assets/back.png"
@@ -49,11 +49,16 @@ const Cadastro = () =>{
         <Cabecalho>
             <Back onClick={() => goReturn(navigate)} src={back} alt="back" />
         </Cabecalho>
+
+            <DivLogo>
             <LogoRappi src={logo} alt={"logo"} />
+            </DivLogo>
+
             <Titulo>Cadastrar</Titulo>
+
             <form onSubmit={Cadastrar}>
-            <div>
-                <InputEstilo
+            <DivInput>
+                <Input
                  placeholder="Digite o seu Nome"
                  name="name"
                  value={form.name}
@@ -61,7 +66,7 @@ const Cadastro = () =>{
                  title="Name"
                  required
                 />
-                <InputEstilo
+                <Input
                 placeholder="Digite o seu Email"
                 name="email"
                 value={form.email}
@@ -70,7 +75,7 @@ const Cadastro = () =>{
                 required
                 />
 
-                <InputEstilo
+                <Input
                  placeholder="Digite o seu CPF"
                  name="cpf"
                  value={form.cpf}
@@ -80,7 +85,7 @@ const Cadastro = () =>{
                  required
                 />
 
-                <InputEstilo
+                <Input
                 placeholder="Digite sua Senha"
                 name="password"
                 value={form.password}
@@ -91,7 +96,7 @@ const Cadastro = () =>{
                 id="senha" 
                 required
                 />
-                <InputEstilo
+                <Input
                 placeholder="Confirmar Senha"
                 name="passwordC"
                 onChange={onChange}
@@ -101,10 +106,12 @@ const Cadastro = () =>{
                 id="senhaC" 
                 required
                 />
-            </div>
+            </DivInput>
+
             <AreaBotao>
             <BotaoEstilo onClick={validarSenha}><TextoBotao>Criar</TextoBotao></BotaoEstilo>
             </AreaBotao>
+            
             </form>
        </Container>
     )

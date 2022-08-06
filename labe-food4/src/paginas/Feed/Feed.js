@@ -90,12 +90,13 @@ const Feed = () => {
       </Carousel>
 
       <Cards>{restaurantes.length > 0 ? mapRestaurantes : <p>Carregando...</p>}</Cards>
+      
       <NavBar>
         <Icons onClick={() => goToFeed(navigate)} src={home} alt="home" />
         <Icons onClick={() => goToCarrinho(navigate)} src={cart} alt="cart" />
         <Icons onClick={() => goToPerfil(navigate)} src={avatar} alt="avatar" />
-
       </NavBar>
+      
       {active !== null && <ActiveCard />}
 
     </Container>

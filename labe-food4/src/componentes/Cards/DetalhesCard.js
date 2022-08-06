@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { ImagemCard } from "../../constantes/ScreenContainer"
 import { GlobalContext } from "../../componentes/global/GlobalContext";
 import { useContext } from "react";
 import Modal from "react-modal"
@@ -11,24 +10,49 @@ border: 1px solid black;
 border-radius: 5px;
 margin-bottom: 1rem;
 margin-top: 1rem;
-flex-direction: column;
 border-radius: 5px;
 border-color: #b8b8b8;
 width: 80%;
-
+height: 8rem;
+`
+const ImagemCard = styled.img`
+    width: 10rem;
+    height: 100%;
 `
 
 const Nomecomida = styled.div`
 color: #e86e5a;
-margin-top: 0.5rem;
-margin-left: 1rem;
+margin-top: 1rem;
+font-weight: bold;
+`
+
+const NomeDescricao = styled.span`
+color: #D1D1D6;
+margin-top: 0.3rem;
+margin-bottom: 0.3rem;
+`
+
+const NomePreco = styled.span`
+color: black;
+margin-bottom: 1rem;
+`
+
+const NomeBotao = styled.button`
+border: 1px solid black;
+background-color: white;
+border-radius: 3px;
+`
+
+const FooterCard = styled.div`
+display: flex;
+justify-content: space-between;
+
 `
 
 const Rodape = styled.div`
 color: gray;
 display: flex;
 margin-left: 1rem;
-margin-right: 1rem;
 margin-bottom: 0.5rem;
 justify-content: space-between;
 flex-direction:column;
@@ -45,8 +69,16 @@ const ModalStyles = {
 };
 
 const SelectModal = styled.select`
-width: 80%;
-height: 2rem;
+width: 100%;
+height: 3rem;
+border-color: #E5E5EA;
+`
+
+const BotaoModal = styled.button`
+border: none;
+background-color: white;
+color: #007AFF;
+margin-top: 1rem;
 `
 
 export const DetalhesCard = (props) => {
@@ -54,9 +86,9 @@ export const DetalhesCard = (props) => {
     const { requests, states, setters } = useContext(GlobalContext)
     const { adicionaCarrinho, adicionaCarrinhoAux } = requests
     const { carrinho, amount, carrinhoProdutos } = states
-    const {setAmount, setCarrinhoProdutos} = setters
+    const { setAmount, setCarrinhoProdutos } = setters
     const [modalIsOpen, setIsOpen] = useState(false)
-  
+
 
     function openModal() {
         setIsOpen(true);
@@ -64,39 +96,40 @@ export const DetalhesCard = (props) => {
 
     function closeModal() {
         setIsOpen(false);
-        
+
         // console.log("Função closemodal passando pro adicionaCarrinho: " , comida)
-        amount > 0 ? adicionaCarrinho(comida , amount) : alert("Selecione uma quantidade.")
+        amount > 0 ? adicionaCarrinho(comida, amount) : alert("Selecione uma quantidade.")
 
         //Fiz uma função auxiliar para não interferir com a renderização.
         // amount > 0 ? adicionaCarrinhoAux(comida , amount) : alert("Selecione uma quantidade.")  
-        
+
         // Limpa o input
         setAmount(0)
     }
-
-
-    const seleciona = (event) =>{
+    const seleciona = (event) => {
         setAmount(event.target.value)
     }
 
     console.log(carrinho)
-    
 
     return (
         <Countainer>
+
             <div>
                 <ImagemCard src={comida.photoUrl} />
             </div>
-            <div>
-                <Nomecomida>{comida.name}</Nomecomida>
-            </div>
-            <Rodape>
-                <p>{comida.description}</p>
-                <span>R${comida.price.toFixed(2).replace(".", ",")}</span>
 
-                <div>
-                    <button onClick={openModal}>Adicionar</button>
+            <Rodape>
+                <Nomecomida>{comida.name}</Nomecomida>
+
+                <NomeDescricao>{comida.description}</NomeDescricao>
+
+
+                <FooterCard>
+                <NomePreco>R${comida.price.toFixed(2).replace(".", ",")}</NomePreco>
+
+                    <NomeBotao onClick={openModal}>adicionar</NomeBotao>
+
                     <Modal
                         isOpen={modalIsOpen}
                         onRequestClose={closeModal}
@@ -112,9 +145,9 @@ export const DetalhesCard = (props) => {
                         <div id="full_description">
 
                             <SelectModal value={amount}
-                            onChange={seleciona}
+                                onChange={seleciona}
                             >
-                                <option value={0} disabled style={{ display: 'none' }}></option>
+                                <option value={0} disabled style={{ display: 0 }}></option>
                                 <option value={1}>1</option>
                                 <option value={2}>2</option>
                                 <option value={3}>3</option>
@@ -127,13 +160,12 @@ export const DetalhesCard = (props) => {
                                 <option value={10}>10</option>
                             </SelectModal>
 
-                            <button
-                                onClick={closeModal}
-                            >adicionar</button>
+                            <BotaoModal onClick={closeModal} >ADICIONAR AO CARRINHO</BotaoModal>
                         </div>
                     </Modal>
-                </div>
+                </FooterCard>
             </Rodape>
+            
         </Countainer>
     );
 };
