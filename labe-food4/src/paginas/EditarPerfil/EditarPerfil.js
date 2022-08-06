@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { LogoRappi, Titulo, BotaoEstilo, TextoBotao, AreaBotao } from "../Cadastro/Style";
-import { NomeApp, Cabecalho, Container, Back } from "./Style";
-import logo from "../../assets/logo-future-eats-invert.png"
+import { DivInput, Input, Cabecalho, NomeApp, Container, Back, BotaoEstilo, TextoBotao, AreaBotao } from "./Style";
 import { useForm } from "../../hooks/useForm";
 import { BASE_URL } from "../../constantes/BASE_URL"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import back from "../../assets/back.png"
-import { goToPerfil, goReturn } from "../../routes/Coordenator";
+import { goReturn } from "../../routes/Coordenator";
 import { InputsGeral } from "../../constantes/ScreenContainer";
 
 const EditarPerfil = () => {
@@ -39,13 +37,16 @@ const EditarPerfil = () => {
 
     return (
         <Container>
+
             <Cabecalho>
             <Back onClick={() => goReturn(navigate)} src={back} alt="back" />
             <NomeApp>Editar</NomeApp>
+            <div></div>
           </Cabecalho>
+
             <form onSubmit={EditarPerfil}>
-                <div>
-                    <InputsGeral
+                <DivInput>
+                    <Input
                         placeholder="Digite o seu Nome"
                         name="name"
                         value={form.name}
@@ -53,7 +54,7 @@ const EditarPerfil = () => {
                         title="Name"
                         required
                     />
-                    <InputsGeral
+                    <Input
                         placeholder="Digite o seu Email"
                         name="email"
                         value={form.email}
@@ -62,7 +63,7 @@ const EditarPerfil = () => {
                         required
                     />
 
-                    <InputsGeral
+                    <Input
                         placeholder="Digite o seu CPF"
                         name="cpf"
                         value={form.cpf}
@@ -71,7 +72,8 @@ const EditarPerfil = () => {
                         title="CPF invalido"
                         required
                     />
-                </div>
+                </DivInput>
+
                 <AreaBotao>
                     <BotaoEstilo><TextoBotao>Salvar</TextoBotao></BotaoEstilo>
                 </AreaBotao>

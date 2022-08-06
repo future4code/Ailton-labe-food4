@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
-import { Container, Endereco, Linha, Historico, NomeApp, Cabecalho, CardTodasOrdens, NomeOrdem } from "./Style";
+import { Container, Endereco, Linha, Historico, NomeApp, Mensagem, Cabecalho, CardTodasOrdens, NomeOrdem } from "./Style";
 import { DadosPessoal } from "./Style";
 import { PerfilLetras, TituloEndereco } from "./Style";
 import { BoxEndereco } from "./Style";
@@ -18,7 +18,7 @@ import cart from "../../assets/shopping-cart.png"
 import avatar from "../../assets/avatar-laranja.png"
 import home from "../../assets/homepage.png"
 import edit from "../../assets/edit.png"
-import ActiveCard from "../../componentes/Cards/ActiveCard";
+
 
 const Perfil = () => {
     const navigate = useNavigate()
@@ -44,15 +44,16 @@ const Perfil = () => {
             <div>{datinha.getDate()}/{datinha.getUTCMonth() + 1}/{datinha.getFullYear()}</div>
           </CardTodasOrdens>
         )
-      }) : <p>Você ainda não realizou nenhum pedido!</p>
+      }) : <Mensagem>Você ainda não realizou nenhum pedido!</Mensagem>
 
       console.log(mapPedidos)
 
     return (
       <Container>
         <Cabecalho>
-          <NomeApp>Perfil</NomeApp> 
+          <NomeApp>Meu Perfil</NomeApp> 
         </Cabecalho>
+        
         {perfil ? (
           <DadosPessoal>
             <BotaoEditar

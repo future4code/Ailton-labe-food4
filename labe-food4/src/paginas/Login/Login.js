@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { BASE_URL } from "../../constantes/BASE_URL"
-import { Container, Cabecalho, NomeApp, Titulo, LogoRappi } from "../Cadastro/Style";
+import { Container, DivLogo, SpanCadastro, Input, BotaoCadastro, DivInput, Titulo, DivCadastro, LogoRappi, BotaoGeral, DivBotao } from "../Login/Style";
 import logo from "../../assets/logo-future-eats-invert.png"
 import axios from "axios";
 import { goToFeed } from "../../routes/Coordenator";
 import { goToCadastro } from "../../routes/Coordenator";
-import { BotaoGeral } from "../../constantes/ScreenContainer"
 
 const Login = () => {
     
@@ -35,14 +34,16 @@ const Login = () => {
 
     return (
       <Container>
-        <Cabecalho>
-          <NomeApp>Login</NomeApp>
-        </Cabecalho>
+        
+        <DivLogo>
         <LogoRappi src={logo} alt={"logo"} />
-        <Titulo>Cadastrar</Titulo>
+        </DivLogo>
+
+        <Titulo>Entrar</Titulo>
+
         <form onSubmit={Login}>
-          <div>
-            <input
+          <DivInput>
+            <Input
               name="email"
               className="InputDetalhe1Login"
               placeholder="Email"
@@ -52,7 +53,7 @@ const Login = () => {
               title="Utilize apenas caracteres minúsculos, números, não esqueça da @."
               required
             />
-            <input
+            <Input
               name="password"
               type={"password"}
               className="InputDetalhe2Login"
@@ -63,15 +64,20 @@ const Login = () => {
               title="Minimo 8, máximo 30"
               required
             />
-          </div>
-          <BotaoGeral>Login</BotaoGeral>
-        </form>
-        <div>
-          <span>Não possui Cadastro?</span>
-          <button onClick={() => goToCadastro(navigate)}>Cliqui aqui</button>
-        </div>
+          </DivInput>
 
-        <button onClick={limparlocalStorage}>Logout</button>
+          <DivBotao>
+          <BotaoGeral>Entrar</BotaoGeral>
+          </DivBotao>
+
+        </form>
+
+        <DivCadastro>
+          <p>Não possui Cadastro?</p> 
+          <SpanCadastro onClick={() => goToCadastro(navigate)}>Cliqui aqui.</SpanCadastro>
+        </DivCadastro>
+
+        {/* <button onClick={limparlocalStorage}>Logout</button> */}
       </Container>
     );
 }
