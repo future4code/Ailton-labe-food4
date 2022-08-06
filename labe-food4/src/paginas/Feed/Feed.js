@@ -14,16 +14,15 @@ import avatar from "../../assets/avatar.png"
 import home from "../../assets/homepage-laranja.png"
 import { useProtectedPage } from "../../hooks/useProtectedPage"
 import { goToCadastroEndereco } from "../../routes/Coordenator";
+import ActiveCard from "../../componentes/Cards/ActiveCard";
 
 const Feed = () => {
   useProtectedPage()
   const navigate = useNavigate()
   const { states, requests } = useContext(GlobalContext)
-  const { restaurantes, restaurantesDetalhes } = states
+  const { restaurantes, restaurantesDetalhes, active } = states
   const { PegarRestaurantes } = requests
   const [query, setQuery] = useState("")
-
-
 
   const filterRestaurantes = restaurantes && restaurantes.filter(restaurante => {
     return restaurante.name.toLowerCase().includes(query.toLowerCase()) ? true : false
@@ -67,6 +66,8 @@ const Feed = () => {
       <Cabecalho>
         <NomeApp>Rappi4</NomeApp>
       </Cabecalho>
+
+      {/* {active !== null && <p>{active.restaurantName}</p>} */}
 
       <ContainerPesquisa>
         <Pesquisa
