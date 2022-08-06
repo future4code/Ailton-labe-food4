@@ -21,7 +21,7 @@ const Feed = () => {
   const navigate = useNavigate()
   const { states, requests } = useContext(GlobalContext)
   const { restaurantes, restaurantesDetalhes, active } = states
-  const { PegarRestaurantes } = requests
+  const { PegarRestaurantes, pegarOrdensAtivas } = requests
   const [query, setQuery] = useState("")
 
   const filterRestaurantes = restaurantes && restaurantes.filter(restaurante => {
@@ -59,6 +59,7 @@ const Feed = () => {
 
   useEffect(() => {
     PegarRestaurantes(goToCadastroEndereco, navigate)
+    pegarOrdensAtivas()
   }, [])
 
   return (
@@ -95,6 +96,7 @@ const Feed = () => {
         <Icons onClick={() => goToPerfil(navigate)} src={avatar} alt="avatar" />
 
       </NavBar>
+      {active !== null && <ActiveCard />}
 
     </Container>
   )

@@ -42,7 +42,7 @@ const GlobalState = (props) => {
             })
     }
 
-    console.log(PegarRestaurantes)
+    // console.log(PegarRestaurantes)
     
     const PegarPerfil = () => {
         const url = `${BASE_URL}/profile`
@@ -78,7 +78,7 @@ const GlobalState = (props) => {
             })
     }
 
-    console.log(pegarOrdensAtivas)
+    // console.log(pegarOrdensAtivas)
 
     const PegarHistoricoPedidos = () => {
         const url = `${BASE_URL}/orders/history`
