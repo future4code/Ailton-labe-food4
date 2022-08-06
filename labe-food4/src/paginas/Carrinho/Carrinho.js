@@ -14,7 +14,7 @@ import axios from "axios";
 const Carrinho = () => {
     const navigate = useNavigate()
     const { requests, states, setters } = useContext(GlobalContext)
-    const { PegarPerfil } = requests
+    const { PegarPerfil, PegarOrdensAtivas } = requests
     const { perfil, restauranteEscolhido, carrinho, carrinhoProdutos, amount, somaCarrinho } = states
     const {setCarrinho, setAmount, setCarrinhoProdutos} = setters
     const [formaPagamento, setFormaPagamento] = useState("")
@@ -84,7 +84,7 @@ const Carrinho = () => {
             setAmount(0)
             console.log(resp)
         })
-        .catch((err) =>{
+        .catch(() =>{
             alert("Deu erro, você já tem um pedido em andamento")
         })
     }
