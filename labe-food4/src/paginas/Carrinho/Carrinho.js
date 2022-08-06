@@ -85,7 +85,7 @@ const Carrinho = () => {
             console.log(resp)
         })
         .catch((err) =>{
-            console.log("Deu erro", err.response.data.message )
+            alert("Deu erro, você já tem um pedido em andamento")
         })
     }
 

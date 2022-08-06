@@ -9,6 +9,7 @@ const GlobalState = (props) => {
 
     const [restaurantes, setRestaurantes] = useState([])
     const [perfil, setPerfil] = useState()
+    const [active, setActive] = useState({})
     const [historicoPedidos, setHistoricoPedidos] = useState([])
     const [categoria, setCategoria] = useState([])
     const [restauranteEscolhido, setRestauranteEscolhido] = useState({})
@@ -41,6 +42,8 @@ const GlobalState = (props) => {
             })
     }
 
+    console.log(PegarRestaurantes)
+    
     const PegarPerfil = () => {
         const url = `${BASE_URL}/profile`
         const token = localStorage.getItem("token")
@@ -58,6 +61,25 @@ const GlobalState = (props) => {
             })
     }
 
+    const pegarOrdensAtivas = () => {
+        const url = `${BASE_URL}/active-order`
+        const token = localStorage.getItem("token")
+        const header = {
+            headers: {
+                auth: token
+            },
+        }
+        axios.get(url, header)
+            .then((resp) => {
+                setActive(resp.data.order)
+            })
+            .catch((err) => {
+                console.log("Deu ruim", err.response)
+            })
+    }
+
+    console.log(pegarOrdensAtivas)
+
     const PegarHistoricoPedidos = () => {
         const url = `${BASE_URL}/orders/history`
         const token = localStorage.getItem("token")
@@ -68,6 +90,7 @@ const GlobalState = (props) => {
         }
         axios.get(url, header)
             .then((resp) => {
+                setHistoricoPedidos(resp.data.orders)
                 console.log(resp.data.orders)
             })
             .catch((err) => {
@@ -132,14 +155,14 @@ const GlobalState = (props) => {
 
     const states = {
         restaurantes, perfil, historicoPedidos, carrinho,
-        carrinhoProdutos, restauranteEscolhido, categoria, restauranteAtual, amount,
+        carrinhoProdutos, restauranteEscolhido, categoria, restauranteAtual, amount, active
     }
     const setters = {
         setRestaurantes, setPerfil, setHistoricoPedidos, setCarrinho, setCarrinhoProdutos,
-        setRestauranteEscolhido, setCategoria, setRestauranteAtual, setAmount
+        setRestauranteEscolhido, setCategoria, setRestauranteAtual, setAmount, setActive
     }
     const requests = { PegarRestaurantes, PegarPerfil, PegarHistoricoPedidos, verDetalhes, adicionaCarrinho,
-        removeToCarrinho, adicionaCarrinhoAux
+        removeToCarrinho, adicionaCarrinhoAux, pegarOrdensAtivas
      }
 
     const Provider = GlobalContext.Provider

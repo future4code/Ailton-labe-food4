@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../componentes/global/GlobalContext";
-import { Container, Endereco, Linha, Historico, NomeApp, Cabecalho } from "./Style";
+import { Container, Endereco, Linha, Historico, NomeApp, Cabecalho, CardTodasOrdens, NomeOrdem } from "./Style";
 import { DadosPessoal } from "./Style";
 import { PerfilLetras, TituloEndereco } from "./Style";
 import { BoxEndereco } from "./Style";
@@ -18,10 +18,11 @@ import cart from "../../assets/shopping-cart.png"
 import avatar from "../../assets/avatar-laranja.png"
 import home from "../../assets/homepage.png"
 import edit from "../../assets/edit.png"
+import ActiveCard from "../../componentes/Cards/ActiveCard";
 
 const Perfil = () => {
     const navigate = useNavigate()
-
+    const [date, setDate] = useState(new Date())
     const { requests, states } = useContext(GlobalContext)
     const { PegarPerfil, PegarHistoricoPedidos } = requests
     const { perfil, historicoPedidos } = states
@@ -33,17 +34,24 @@ const Perfil = () => {
 
     // map dos pedidos 
     const mapPedidos = historicoPedidos.length > 0 ? historicoPedidos.map((pedido) =>{
-        return (
-          <p key={pedido.id} pedido={pedido}/>
+      const datinha = new Date(pedido.createdAt)  
+      
+      return (
+          <CardTodasOrdens key={pedido.id}>
+            <NomeOrdem>{pedido.restaurantName}</NomeOrdem>
+            <div>Valor: R$ {pedido.totalPrice.toFixed(2)}</div>
+            <br />
+            <div>{datinha.getDate()}/{datinha.getUTCMonth() + 1}/{datinha.getFullYear()}</div>
+          </CardTodasOrdens>
         )
       }) : <p>Você ainda não realizou nenhum pedido!</p>
 
-
+      console.log(mapPedidos)
 
     return (
       <Container>
         <Cabecalho>
-          <NomeApp>Meu Perfil</NomeApp> 
+          <NomeApp>Perfil</NomeApp> 
         </Cabecalho>
         {perfil ? (
           <DadosPessoal>

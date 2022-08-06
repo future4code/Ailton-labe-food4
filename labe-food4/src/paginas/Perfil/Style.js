@@ -4,6 +4,19 @@ export const Container = styled.div`
 height: 100%;
 `   
 
+export const NomeOrdem = styled.h3`
+color: #E86E5A
+` 
+
+export const CardTodasOrdens = styled.div`
+display: flex;
+flex-direction: column;
+margin: 8px;
+padding: 8px;
+border: 1px solid #b8b8b8;
+border-radius: 8px;
+` 
+
 export const Historico = styled.div`
 width: 328px;
 height: 18px;
@@ -63,6 +76,7 @@ color: #000;
 
 export const Cabecalho = styled.div `
 display:flex;
+flex-direction: row;
 justify-content: center;
 align-items: flex-end;
 height: 64px;
