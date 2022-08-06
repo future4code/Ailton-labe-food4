@@ -43,7 +43,7 @@ const ActiveCard = () => {
       <Div2>
         <TextoPedido>Pedido em andamento</TextoPedido>
         <div>Restaurante: {active.restaurantName}</div>
-        <TextoTotal>TOTAL:R$ {active.totalPrice.toFixed(2).replace(".", ",")}</TextoTotal>
+        <TextoTotal>TOTAL:R$ {active.totalPrice}</TextoTotal>
       </Div2>
     </ContainerPedido>
 
