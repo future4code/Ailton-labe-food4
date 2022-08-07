@@ -22,13 +22,18 @@ const Feed = () => {
   const { states, requests } = useContext(GlobalContext)
   const { restaurantes, restaurantesDetalhes, active } = states
   const { PegarRestaurantes, pegarOrdensAtivas } = requests
-  const [query, setQuery] = useState("")
+  const [ query, setQuery ] = useState("")
+  const [categoria, setCategoria] = useState("")
 
   const filterRestaurantes = restaurantes && restaurantes.filter(restaurante => {
     return restaurante.name.toLowerCase().includes(query.toLowerCase()) ? true : false
   })
 
-  const mapRestaurantes = filterRestaurantes.length > 0 ? filterRestaurantes.map((restaurante) => {
+  const categoriaRestaurantes = filterRestaurantes.length > 0 && filterRestaurantes.filter(restaurante => {
+    return categoria !== "" ? restaurante.category === categoria : true
+  })
+
+  const mapRestaurantes = categoriaRestaurantes.length > 0 ? categoriaRestaurantes.map((restaurante) => {
     return (
       <FeedCard key={restaurante.id} restaurante={restaurante} />
     )
@@ -82,7 +87,7 @@ const Feed = () => {
       {/* {selectedRes} */}
         {categoriasFiltrados?.map((categoria) => (
           <Categorias key={categoria}
-          // onClick={() => resCategoria(categoria)}
+          onClick={() => setCategoria(categoria)}
           >
             {categoria}
           </Categorias>

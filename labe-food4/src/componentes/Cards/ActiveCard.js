@@ -1,55 +1,49 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { GlobalContext } from '../global/GlobalContext'
+import relogio from '../../assets/relogio.png'
 
 const ContainerPedido = styled.div`
-width: 420px;
+width: 100%;
 height: 8rem;
 position: fixed;
-bottom: 1.7rem; //mudar para a altura do footer
+bottom: 40px;
 background-color: #e86e5a;
 padding: 0 4px;
 display: flex;
 `
-
 const TextoPedido = styled.div`
-color: white
+color: white;
+margin-bottom: 4px;
 `
 const TextoTotal = styled.div`
 font-weight: bold;
+margin-top: 4px;
 `
-const Div1 = styled.div`
-width: 70px;
-margin-top: 3rem;
+const Relogio = styled.img`
+width: 32px;
+object-fit: contain;
 margin-left: 1.5rem;
 margin-right: 1rem;
 `
-const Div2 = styled.div`
+const Pedido = styled.div`
 width: 320px;
 margin-top: 2rem;
 `
 
 const ActiveCard = () => {
-  const { requests, states } = useContext(GlobalContext)
-  const { PegarOrdensAtivas } = requests
-  const { active, setActive } = states
-
-  // const data = new Date(active.createdAt)
-  // const entrega = new Date(active.expiresAt)
+  const { states } = useContext(GlobalContext)
+  const { active } = states
 
   return (
     <ContainerPedido>
-      <Div1>Relogio</Div1>
-      <Div2>
+      <Relogio src={relogio} />
+      <Pedido>
         <TextoPedido>Pedido em andamento</TextoPedido>
         <div>Restaurante: {active.restaurantName}</div>
-        <TextoTotal>TOTAL:R$ {active.totalPrice}</TextoTotal>
-      </Div2>
+        <TextoTotal>TOTAL: R${Number(active.totalPrice).toFixed(2).replace(".", ",")}</TextoTotal>
+      </Pedido>
     </ContainerPedido>
-
-    /* <div>Hora do pedido: {`${new Date(active.createdAt)}`}</div>
-    <div>Entrega: {`${new Date(active.expiresAt)}`}</div> */
-
   )
 }
 

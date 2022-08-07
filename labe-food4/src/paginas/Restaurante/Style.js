@@ -1,10 +1,9 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-height: 100%;
 position: relative;
-width: 428px;
-height: 1134px;
+width: 100vw;
+height: 100vh;
 display: flex; 
 flex-direction: column; 
 border: 1px solid black;   

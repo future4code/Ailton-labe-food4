@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Busca from "../paginas/Busca/Busca"
 import Cadastro from "../paginas/Cadastro/Cadastro"
 import Carrinho from "../paginas/Carrinho/Carrinho"
 import CadastroEndereco from "../paginas/CadastroEndereco/CadastroEndereco"
@@ -23,7 +22,6 @@ const Router = () =>{
                 <Route path="/cadastro/endereco" element={<CadastroEndereco/>}/>
                 <Route path="/restaurante/:id" element={<Restaurante/>}/>
                 <Route path="/carrinho" element={<Carrinho/>}/>
-                <Route path="/busca" element={<Busca/>}/>
                 <Route path="/perfil" element={<Perfil/>}/>
                 <Route path="/editar/endereco" element={<EditarEndereco/>}/>
                 <Route path="/editar/perfil" element={<EditarPerfil/>}/>
