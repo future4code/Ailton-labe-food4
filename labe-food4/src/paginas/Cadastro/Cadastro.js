@@ -7,8 +7,10 @@ import { LogoRappi, Titulo, Input, DivInput, Container, BotaoEstilo, TextoBotao,
 import logo from "../../assets/logo-future-eats-invert.png"
 import { goToCadastroEndereco, goReturn } from "../../routes/Coordenator";
 import back from "../../assets/back.png"
+import { useUnprotectedPage } from "../../hooks/useUnprotectedPage";
 
 const Cadastro = () =>{
+    useUnprotectedPage()
     const navigate = useNavigate()
     const { form, onChange } = useForm({ name: "", email: "", cpf: "", password: "" })
 

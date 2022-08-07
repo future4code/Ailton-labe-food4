@@ -7,9 +7,10 @@ import logo from "../../assets/logo-future-eats-invert.png"
 import axios from "axios";
 import { goToFeed } from "../../routes/Coordenator";
 import { goToCadastro } from "../../routes/Coordenator";
+import { useUnprotectedPage } from "../../hooks/useUnprotectedPage"
 
 const Login = () => {
-    
+    useUnprotectedPage()
     const navigate = useNavigate()
     const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
 
@@ -74,7 +75,7 @@ const Login = () => {
 
         <DivCadastro>
           <p>Não possui Cadastro?</p> 
-          <SpanCadastro onClick={() => goToCadastro(navigate)}>Cliqui aqui.</SpanCadastro>
+          <SpanCadastro onClick={() => goToCadastro(navigate)}>Clique aqui.</SpanCadastro>
         </DivCadastro>
 
         {/* <button onClick={limparlocalStorage}>Logout</button> */}
