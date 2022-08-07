@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+Nosso projeto está com todas as funcioanlidades exigidas pelo notion.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pagina Inicial:
+É o Feed, onde aparece os cards dos restaurantes, bem como a barra de pesquisa e o filtro por categoria de restaurante. Caso não esteja logado ela irá redirecionar ao login. Ao clicar na barra de pesquisa, ela irá pesquisar por nome do restaurante, já no filtro, ela filtra a categoria.
 
-## Available Scripts
+Na página Restaurante, irá aparecer mais detalhes sobre o restaurante, e um filro já estampado na pagina com as comidas principais, acompanhamentos e bebidas com os seus detalhes e valores. Por essa pagina, o usuário poderá adicionar os itens ao seu carrinho.
 
-In the project directory, you can run:
+Na pagina Carrinho, irá aparecer o endereço de entrega atual, a lista de pedidos realizados, já com o subtotal, o frete e o valor total tudo somado, bem como a forma de pagamento. Ao confirmar o pedido, o usuario é enviado para a pagina do Feed com a mensagem do tempo de entrega de seu pedido, e ao finalizar o tempo,  o seu carrinho esvazia.
 
-### `npm start`
+Na pagina de Login, aparece os dados do usuario, seu endereço e os botoes para realizar as alterações. Logo em baixo seus historicos de pedido.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Caso o usuário nao esteja logado, irá ser redirecionado para a tela de login, e caso nao tenha um login, para a tela de cadastro e posterior a tela de cadastro de endereço.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Caso o usuário não realize o cadastro de endereço, uma mensagem vai alerta-lo e redirecionar para que ele conclua seu cadastro.
 
-### `npm test`
+O que talvez não funcione, é que o usuário podera realizar pedidos de restaurantes diferentes, porem creio que a API o bloqueia.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Não usamos o MUI, por isso algumas coisas da estética não foram aplicadas. Mas creio que está muito parecido ao Zepelin. 
 
-### `npm run build`
+Queriamos implementar o horario de entrega, porem não conseguimos pela falta de tempo. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Todos do grupo contribuiram com o projeto. Melhor grupo >D
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
