@@ -1,4 +1,10 @@
-Nosso projeto está com todas as funcioanlidades exigidas pelo notion.
+## Rappi4
+
+### Link Surge
+<https://fancy-slave.surge.sh/>
+
+### Funcionalidades
+Nosso projeto está com todas as funcionalidades exigidas pelo notion.
 
 Pagina Inicial:
 É o Feed, onde aparece os cards dos restaurantes, bem como a barra de pesquisa e o filtro por categoria de restaurante. Caso não esteja logado ela irá redirecionar ao login. Ao clicar na barra de pesquisa, ela irá pesquisar por nome do restaurante, já no filtro, ela filtra a categoria.
@@ -20,4 +26,3 @@ Não usamos o MUI, por isso algumas coisas da estética não foram aplicadas. Ma
 Queriamos implementar o horario de entrega, porem não conseguimos pela falta de tempo. 
 
 Todos do grupo contribuiram com o projeto. Melhor grupo >D
-
