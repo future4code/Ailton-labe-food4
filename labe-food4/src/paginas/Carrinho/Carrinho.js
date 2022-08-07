@@ -85,6 +85,8 @@ const Carrinho = () => {
             setCarrinhoProdutos([])
             setAmount(0)
             console.log(resp)
+            goToFeed(navigate)
+
         })
         .catch(() =>{
             alert("Deu erro, você já tem um pedido em andamento")
