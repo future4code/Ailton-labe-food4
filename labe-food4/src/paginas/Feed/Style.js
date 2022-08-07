@@ -3,14 +3,15 @@ import styled from "styled-components"
 export const Container = styled.div`
 height: 100%;
 position: relative;
-width: 428px;
-height: 1134px;
+width: 100vw;
+height: 100vh;
 display: flex; 
 flex-direction: column; 
 border: 1px solid black;   
 `   
 
 export const Cabecalho = styled.div`
+width: 100vw;
 display: flex;
 justify-content: center;
 align-items: flex-end;
@@ -45,7 +46,6 @@ display: flex;
 justify-content: center;
 margin-top: 0.5rem;
 margin-bottom: 0.5rem;
-
 `
 
 export const Icons = styled.img`
@@ -59,7 +59,8 @@ display: flex;
 justify-content: space-around;
 align-items: center;
 background-color: white;
-width: 428px;
+width: 100%;
+height: 40px;
 position: fixed;
     bottom:0;
     left: 0;

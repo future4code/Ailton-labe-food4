@@ -1,7 +1,3 @@
-export const goToBusca = (navigate) =>{
-    navigate("/busca")
-}
-
 export const goToCadastro = (navigate) =>{
     navigate("/cadastro")
 }
