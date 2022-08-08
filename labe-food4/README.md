@@ -1,7 +1,7 @@
 ## Rappi4
 
 ### Link Surge
-<http://capable-frog.surge.sh/>
+<https://capable-frog.surge.sh/>
 
 ### Funcionalidades
 Nosso projeto está com todas as funcionalidades exigidas pelo notion.
