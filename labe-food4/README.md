@@ -1,7 +1,7 @@
 ## Rappi4
 
 ### Link Surge
-<https://fancy-slave.surge.sh/>
+<http://capable-frog.surge.sh/>
 
 ### Funcionalidades
 Nosso projeto está com todas as funcionalidades exigidas pelo notion.
