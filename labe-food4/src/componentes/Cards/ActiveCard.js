@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { GlobalContext } from '../global/GlobalContext'
 import relogio from '../../assets/relogio.png'
+import Moment from 'moment';
+
 
 const ContainerPedido = styled.div`
 width: 100%;
@@ -35,12 +37,19 @@ const ActiveCard = () => {
   const { states } = useContext(GlobalContext)
   const { active } = states
 
+  var data = `${new Date(active.expiresAt)}`;
+  var date = Moment(data).format('HH:mm:ss');
+  // formato('YYYY-MM-DDTHH:mm:ss')
+
+  console.log(date);
+
   return (
     <ContainerPedido>
       <Relogio src={relogio} />
       <Pedido>
         <TextoPedido>Pedido em andamento</TextoPedido>
         <div>Restaurante: {active.restaurantName}</div>
+        <div>Entrega as: {date}</div>
         <TextoTotal>TOTAL: R${Number(active.totalPrice).toFixed(2).replace(".", ",")}</TextoTotal>
       </Pedido>
     </ContainerPedido>

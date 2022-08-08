@@ -18,6 +18,7 @@ O que talvez não funcione, é que o usuário podera realizar pedidos de restaur
 Não usamos o MUI, por isso algumas coisas da estética não foram aplicadas. Mas creio que está muito parecido ao Zepelin. 
 
 Queriamos implementar o horario de entrega, porem não conseguimos pela falta de tempo. 
+PS. aos 45min do segundo tempo conseguimos colocar o tempo
 
 Todos do grupo contribuiram com o projeto. Melhor grupo >D
 
